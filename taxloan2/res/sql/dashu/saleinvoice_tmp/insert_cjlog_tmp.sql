@@ -1,0 +1,1 @@
+insert into ${hivevar:DATABASE_DEST}.cjlog_tmp select * from cjlog_tmp

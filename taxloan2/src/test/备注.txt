@@ -1,0 +1,2 @@
+sudo -u hdfs hdfs dfs -chown hive:hive /user/hive/warehouse/dm_taxloan.db/*
+sudo -u hdfs hdfs dfs -chmod 777 /user/hive/warehouse/dm_taxloan.db/*

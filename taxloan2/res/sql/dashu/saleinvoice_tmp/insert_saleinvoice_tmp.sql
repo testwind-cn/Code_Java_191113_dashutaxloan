@@ -1,0 +1,1 @@
+insert into ${hivevar:DATABASE_DEST}.saleinvoice_tmp select * from saleinvoice_tmp

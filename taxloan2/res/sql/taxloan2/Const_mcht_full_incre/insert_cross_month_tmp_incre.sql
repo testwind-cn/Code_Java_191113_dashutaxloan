@@ -1,7 +1,6 @@
 
 -- 生成辅助表，后面需要用到 cross_month_tmp
 -- 生成从首次开票，到当前月的每个月数据行
-
 with cte_t1 as
 (
     select

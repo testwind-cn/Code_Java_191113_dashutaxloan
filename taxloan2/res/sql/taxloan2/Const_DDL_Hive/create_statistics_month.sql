@@ -1,5 +1,4 @@
 
-
 --月统计表
 -- DROP TABLE IF EXISTS dm_taxloan.statistics_month;
 CREATE TABLE IF NOT EXISTS ${hivevar:DATABASE_DEST}.statistics_month(
@@ -9,7 +8,6 @@ CREATE TABLE IF NOT EXISTS ${hivevar:DATABASE_DEST}.statistics_month(
                                             invoice_sc_cancel_cnt int COMMENT '增值税发票作废张数',
                                             invoice_sc_red_cnt int COMMENT '增值税发票红冲张数',
                                             invoice_sc_total_sum decimal(20,2) COMMENT '增值税发票合计金额税额总和',
-
                                             invoice_cnt int COMMENT '所有发票开票张数',
                                             invoice_cr_cnt int COMMENT '所有发票作废红冲张数',
                                             invoice_amt_sum decimal(20,2) COMMENT '所有发票合计金额',
@@ -20,8 +18,6 @@ CREATE TABLE IF NOT EXISTS ${hivevar:DATABASE_DEST}.statistics_month(
                                             invoice_red_cnt int COMMENT '所有发票红冲张数',
                                             invoice_total_c_sum decimal(20,2) COMMENT '所有作废发票合计金额税额总和',
                                             invoice_total_r_sum decimal(20,2) COMMENT '所有红冲发票合计金额税额总和',
-
-
                                             invoice_s_cnt int COMMENT '增值税专用发票开票张数',
                                             invoice_s_cancel_cnt int COMMENT '增值税专用发票作废张数',
                                             invoice_s_red_cnt int COMMENT '增值税专用发票红冲张数',

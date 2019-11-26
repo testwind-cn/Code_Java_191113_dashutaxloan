@@ -22,7 +22,6 @@ cte_t3 as
         row_number() over(partition by sellertaxno order by invoicedate desc) as rank
     from ${hivevar:DATABASE_DEST}.saleinvoice_tmp where invoicedate is not null
 )
-
 insert into ${hivevar:DATABASE_DEST}.mcht_tax
     partition(create_time)
 select

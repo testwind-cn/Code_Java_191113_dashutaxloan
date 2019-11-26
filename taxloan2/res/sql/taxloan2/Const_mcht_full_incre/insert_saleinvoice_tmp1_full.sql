@@ -1,6 +1,4 @@
 
-
-
 -- 处理oldtaxno为空或者null的记录
 with cte_saleinvoice_tmp1 as (
     select
@@ -26,5 +24,4 @@ with cte_saleinvoice_tmp1 as (
         on c1.taxno=s1.sellertaxno
     where c1.oldtaxno='null' or c1.oldtaxno=''
 )
-
 insert into ${hivevar:DATABASE_DEST}.saleinvoice_tmp1 select * from cte_saleinvoice_tmp1

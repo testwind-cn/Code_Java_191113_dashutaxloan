@@ -1,5 +1,4 @@
 
-
 CREATE TABLE IF NOT EXISTS ${hivevar:DATABASE_DEST}.p2(
 	  `mcht_cd` string,
 	  `data_month` string,
@@ -30,7 +29,6 @@ CREATE TABLE IF NOT EXISTS ${hivevar:DATABASE_DEST}.p2(
 	  `invoice_c_total_sum` double,
 	  `invoice_t_cnt` bigint,
 	  `invoice_t_cancel_cnt` bigint,
-
 	  `invoice_t_red_cnt` bigint,
 	  `invoice_t_amt_sum` double,
 	  `invoice_t_tax_sum` double,
@@ -61,8 +59,6 @@ CREATE TABLE IF NOT EXISTS ${hivevar:DATABASE_DEST}.p2(
 	  `invoice_lt100_cr_cnt` bigint,
 	  `invoice_lt100_total_sum` double,
 	  `invoice_lt1000_cnt` bigint,
-
-
 	  `invoice_lt1000_cr_cnt` bigint,
 	  `invoice_lt1000_total_sum` double,
 	  `invoice_lt2500_cnt` bigint,

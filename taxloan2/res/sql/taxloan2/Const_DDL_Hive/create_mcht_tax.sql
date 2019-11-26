@@ -1,5 +1,4 @@
 
-
 --商户表
 -- DROP TABLE IF EXISTS dm_taxloan.mcht_tax;
 CREATE TABLE IF NOT EXISTS ${hivevar:DATABASE_DEST}.mcht_tax(
@@ -15,6 +14,5 @@ CREATE TABLE IF NOT EXISTS ${hivevar:DATABASE_DEST}.mcht_tax(
                                     create_user String COMMENT '创建人',
                                     modify_time timestamp COMMENT '修改时间',
                                     modify_user String COMMENT '修改人'
-
 )COMMENT '【税金贷】商户表 ' partitioned by (create_time string)
     ROW FORMAT DELIMITED FIELDS TERMINATED BY '\0001' stored AS orc

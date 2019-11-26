@@ -27,9 +27,6 @@ CREATE TABLE ${hivevar:DATABASE_DEST}.saleinvoice(
                                           `detaillistflag` boolean,
                                           `email` string,
                                           `encryptionver` string,
-
-
-
                                           `fdjhm` string,
                                           `fhrsbh` string,
                                           `forwordstate` int,
@@ -60,8 +57,6 @@ CREATE TABLE ${hivevar:DATABASE_DEST}.saleinvoice(
                                           `pushtime` string,
                                           `qyd` string,
                                           `recheckperson` string,
-
-
                                           `repairflag` boolean,
                                           `responecode` string,
                                           `responeexplain` string,

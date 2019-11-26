@@ -11,7 +11,6 @@ with m as (
              , *
         from m
     )
-
 select sellertaxno, max(diff) as nonDealDaysL12
 from (select a.sellertaxno, DATEDIFF(b.invoice_date, a.invoice_date) AS DIFF
       from tb a

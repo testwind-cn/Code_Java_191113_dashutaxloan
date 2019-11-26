@@ -1,7 +1,4 @@
 
-
-
-
 insert into ${hivevar:DATABASE_DEST}.statistics_month
     partition(create_time)
 select
@@ -16,12 +13,10 @@ select
     (case when p2.invoice_amt_sum is null then 0 else ROUND(p2.invoice_amt_sum,3) end) as invoice_amt_sum,
     (case when p2.invoice_tax_sum is null then 0 else ROUND(p2.invoice_tax_sum,3) end) as invoice_tax_sum,
     (case when p2.invoice_total_sum is null then 0 else ROUND(p2.invoice_total_sum,3) end) as invoice_total_sum,
-
     (case when p2.invoice_cancel_cnt is null then 0 else p2.invoice_cancel_cnt end) as invoice_cancel_cnt,
     (case when p2.invoice_red_cnt is null then 0 else p2.invoice_red_cnt end) as invoice_red_cnt,
     (case when p2.invoice_total_c_sum is null then 0 else ROUND(p2.invoice_total_c_sum,3) end) as invoice_total_c_sum,
     (case when p2.invoice_total_r_sum is null then 0 else ROUND(p2.invoice_total_r_sum,3) end) as invoice_total_r_sum,
-
     (case when p2.invoice_s_cnt is null then 0 else p2.invoice_s_cnt end) as invoice_s_cnt,
     (case when p2.invoice_s_cancel_cnt is null then 0 else p2.invoice_s_cancel_cnt end) as invoice_s_cancel_cnt,
     (case when p2.invoice_s_red_cnt is null then 0 else p2.invoice_s_red_cnt end) as invoice_s_red_cnt,
@@ -90,12 +85,10 @@ select
     (case when p2.buyer_c_cnt is null then 0 else p2.buyer_c_cnt end) as buyer_c_cnt,
     (case when p2.buyer_f_cnt is null then 0 else p2.buyer_f_cnt end) as buyer_f_cnt,
     '0' AS is_delete,
-
     current_user() AS create_user,
     from_unixtime(unix_timestamp()) as modify_time,
     current_user() AS modify_user,
     current_date() AS create_time
-
 from
     ${hivevar:DATABASE_DEST}.cross_month_tmp p1
 left join ${hivevar:DATABASE_DEST}.p2

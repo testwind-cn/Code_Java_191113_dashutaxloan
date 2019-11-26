@@ -1,8 +1,4 @@
 
-
-
-
-
 CREATE TABLE IF NOT EXISTS `${hivevar:DATABASE_DEST}.c_p2`(
 	  `mcht_cd` string,
 	  `month` string,
@@ -258,10 +254,6 @@ CREATE TABLE IF NOT EXISTS `${hivevar:DATABASE_DEST}.c_p2`(
 	  `invoice_detail_cr_cnt_l24m` bigint,
 	  `invoice_detail_total_sum_l24m` decimal(38,18),
 	  `buyer_cnt_l24m` bigint,
-
-
-
-
 	  `buyer_a_invoice_cnt_l24m` bigint,
 	  `buyer_b_invoice_cnt_l24m` bigint,
 	  `buyer_c_invoice_cnt_l24m` bigint,

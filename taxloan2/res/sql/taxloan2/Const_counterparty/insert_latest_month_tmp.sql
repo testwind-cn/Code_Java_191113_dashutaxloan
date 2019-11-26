@@ -36,7 +36,5 @@ latest_month_tmp as
     where datediff(to_date(from_unixtime(unix_timestamp(t2.month,'yyyyMM'))),to_date(from_unixtime(unix_timestamp(t2.data_month,'yyyyMM'))))>=0 --从最早交易月份开始
         and datediff(to_date(from_unixtime(unix_timestamp(t2.month,'yyyyMM'))),to_date(from_unixtime(unix_timestamp( substr(current_date(),1,7),'yyyy-MM'))))<-1
 )
-
 insert into ${hivevar:DATABASE_DEST}.latest_month_tmp select * from latest_month_tmp
-
 -- 构造出每个商户号和每个买家，从最早交易月，到上月的全表

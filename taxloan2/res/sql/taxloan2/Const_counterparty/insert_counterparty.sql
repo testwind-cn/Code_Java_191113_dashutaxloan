@@ -17,7 +17,6 @@ select
     from_unixtime(unix_timestamp()) as modify_time,
     current_user() AS modify_user,
     current_date() AS create_time
-
 from ${hivevar:DATABASE_DEST}.latest_month_tmp t2
 left join
 (
@@ -31,11 +30,9 @@ left join
         SUM(CASE WHEN t1.totalamount > 0.0 AND t1.totaltax>=0.0 AND t1.cancelflag='0' THEN t1.totalamount ELSE 0	END) AS buyer_invoice_amt_sum,  --交易对手发票合计金额（不含作废及红冲发票）
         SUM(CASE WHEN t1.totalamount > 0.0 AND t1.totaltax>=0.0 AND t1.cancelflag='0' THEN t1.totaltax ELSE 0 END) AS buyer_invoice_tax_sum, --交易对手发票合计税额（不含作废及红冲发票）
         SUM(CASE WHEN t1.totalamount > 0.0 AND t1.totaltax>=0.0 AND t1.cancelflag='0' THEN t1.totalamount + t1.totaltax ELSE 0 END) AS buyer_invoice_total_sum --交易对手发票合计金额税额总和（不含作废及红冲发票）
-
     from
         ${hivevar:DATABASE_DEST}.saleinvoice_tmp t1
     group by t1.sellertaxno,t1.data_month,t1.buyername,buyertaxno
 ) t3
 on t3.sellertaxno=t2.mcht_cd and t3.data_month=t2.month and t3.buyertaxno=t2.buyer_tax_cd and t3.buyername=t2.buyername
-
 -- 用满月份的 latest_month_tmp 表，左关联 saleinvoice_tmp 表的统计数据，维度 商户号、月份、买家税号、买家名称

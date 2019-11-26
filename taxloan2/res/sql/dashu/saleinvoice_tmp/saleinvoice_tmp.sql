@@ -2,7 +2,6 @@
 select
     sellertaxno,sellername,selleraddtel,invoicedate,data_month,sellerbankno,
     oldtaxno,invoiceid,buyername,buyertaxno,totalamount,totaltax,cancelflag,invoicetype,jztype
-
 from (
          select sellertaxno,sellername,selleraddtel,sellerbankno,invoicedate,data_month,
                 oldtaxno,invoiceid,buyername,buyertaxno,totalamount,totaltax,cancelflag,invoicetype,jztype,

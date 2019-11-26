@@ -1,9 +1,5 @@
 
-
-
 -- 过滤重复的发票数据
-
-
 with cte_saleinvoice_tmp3 as (
     select *
     from ${hivevar:DATABASE_DEST}.saleinvoice_tmp1
@@ -11,7 +7,6 @@ with cte_saleinvoice_tmp3 as (
     select *
     from ${hivevar:DATABASE_DEST}.saleinvoice_tmp2
 ),
-
 cte_saleinvoice_tmp as (
     select
         sellertaxno,sellername,selleraddtel,invoicedate,data_month,sellerbankno,
@@ -25,7 +20,5 @@ cte_saleinvoice_tmp as (
     ) a
     where a.rank=1 and a.invoiceid!='NULL'
 )
-
 insert into ${hivevar:DATABASE_DEST}.saleinvoice_tmp select * from cte_saleinvoice_tmp
-
 -- 插入saleinvoice_tmp成功

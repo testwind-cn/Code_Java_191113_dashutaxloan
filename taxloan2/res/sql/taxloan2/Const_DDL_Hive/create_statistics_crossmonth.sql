@@ -1,5 +1,4 @@
 
-
 --跨月统计表
 -- DROP TABLE IF EXISTS dm_taxloan.statistics_crossmonth;
 CREATE TABLE IF NOT EXISTS ${hivevar:DATABASE_DEST}.statistics_crossmonth(

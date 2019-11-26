@@ -34,14 +34,11 @@ from
             s1.cancelflag,
             s1.invoicetype,
             s1.jztype
-
         from ${hivevar:DATABASE_DEST}.cjlog_tmp c1
                  left join ${hivevar:DATABASE_SRC}.saleinvoice s1
                            on c1.taxno=s1.sellertaxno
         where c1.oldtaxno!='null' and c1.oldtaxno!=''
-
         union all
-
         select
             c2.taxno,
             s2.sellertaxno,
@@ -58,7 +55,6 @@ from
             s2.cancelflag,
             s2.invoicetype,
             s2.jztype
-
         from ${hivevar:DATABASE_DEST}.cjlog_tmp c2
                  left join ${hivevar:DATABASE_SRC}.saleinvoice s2
                            on c2.oldtaxno=s2.sellertaxno

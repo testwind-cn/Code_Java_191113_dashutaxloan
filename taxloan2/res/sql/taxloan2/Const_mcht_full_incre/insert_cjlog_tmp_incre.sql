@@ -16,9 +16,7 @@ with aaat as
         taxno,
         if( instr(oldtaxno, '.')  > 0 , substr(oldtaxno,1,instr(oldtaxno,'.')-1), if(oldtaxno='null','',oldtaxno))
 )
-
 insert into ${hivevar:DATABASE_DEST}.cjlog_tmp
-
 select
     distinct
     coalesce( tt3.taxno,tt2.taxno) as taxno
@@ -43,6 +41,3 @@ from
 left join
     aaat as tt3
 on tt2.taxno = tt3.new_oldtaxno
-
-
-

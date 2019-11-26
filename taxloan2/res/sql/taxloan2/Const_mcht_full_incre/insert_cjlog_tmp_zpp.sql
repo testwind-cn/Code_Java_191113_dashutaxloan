@@ -1,6 +1,4 @@
 
-
-
 with cte_cjlog_tmp1 as -- 从cjlog表中取出新老税号，并过滤
 (
     select

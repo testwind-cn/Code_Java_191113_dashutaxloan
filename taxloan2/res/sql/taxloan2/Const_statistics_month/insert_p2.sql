@@ -1,7 +1,5 @@
 
-
 with t2 as (
-
     SELECT
         sellertaxno AS mcht_cd,
         data_month,
@@ -19,7 +17,6 @@ with t2 as (
         sum(CASE WHEN totalamount<0 OR totaltax<0 THEN 1 ELSE 0 END) AS invoice_red_cnt,
         sum(CASE WHEN cancelflag='1' THEN totalamount+totaltax ELSE 0 END) AS invoice_total_c_sum,
         sum(CASE WHEN totalamount<0 OR totaltax<0 THEN totalamount+totaltax ELSE 0 END) AS invoice_total_r_sum,
-
         --发票种类为s
         sum(CASE WHEN invoicetype='s' THEN 1 ELSE 0	END) AS invoice_s_cnt,
         sum(CASE WHEN invoicetype='s'AND cancelflag='1' THEN 1 ELSE 0	END) AS invoice_s_cancel_cnt,
@@ -62,36 +59,29 @@ with t2 as (
         sum(CASE WHEN jztype='卷式发票' AND totalamount>0 AND totaltax>=0 AND cancelflag='0' THEN totalamount ELSE 0 END) AS invoice_r_amt_sum,
         sum(CASE WHEN jztype='卷式发票' AND totalamount>0 AND totaltax>=0 AND cancelflag='0' THEN totaltax ELSE 0 END) AS invoice_r_tax_sum,
         sum(CASE WHEN jztype='卷式发票' AND totalamount>0 AND totaltax>=0 AND cancelflag='0' THEN totalamount+totaltax ELSE 0 END) AS invoice_r_total_sum,
-
         sum(CASE WHEN totalamount<0 AND totaltax<0 THEN 1 ELSE 0 END)/count(*) AS invoice_red_cnt_rate, --红冲发票张数占比
         sum(CASE WHEN cancelflag='1' THEN 1 ELSE 0 END)/ count(*) AS invoice_cancel_cnt_rate,  --作废发票张数占比
         sum(CASE WHEN totalamount<0 AND totaltax<0 THEN totalamount+totaltax ELSE 0 END)/sum(totalamount+totaltax) AS invoice_red_total_sum_rate, --红冲发票合计金额税额总和比率
         sum(CASE WHEN cancelflag='1' THEN totalamount+totaltax ELSE 0 END)/sum(totalamount+totaltax) AS invoice_cancel_total_sum_rate, --作废发票合计金额税金总和比率
-
         sum(CASE WHEN totalamount<100 THEN 1 ELSE 0	END) AS invoice_lt100_cnt, --金额小于100发票张数
         sum(CASE WHEN (totalamount<100 AND cancelflag='1') OR totalamount<0 THEN 1 ELSE 0	END) AS invoice_lt100_cr_cnt, --金额小于100发票作废红冲张数
         sum(CASE WHEN totalamount<100 AND totalamount>0 AND cancelflag='0' THEN totalamount+totaltax ELSE 0	END) AS invoice_lt100_total_sum, --金额小于100发票合计金额税额总和
-
         --金额小于1000（且大于等于100）
         sum(CASE WHEN totalamount<1000 AND totalamount>=100 THEN 1 ELSE 0	END) AS invoice_lt1000_cnt, --金金额小于1000（且大于等于100）发票张数
         sum(CASE WHEN (totalamount<1000 AND totalamount>=100 AND cancelflag='1') OR totalamount<0 THEN 1 ELSE 0	END) AS invoice_lt1000_cr_cnt, --金额小于1000（且大于等于100）发票作废红冲张数
         sum(CASE WHEN totalamount<1000 AND totalamount>=100 AND cancelflag='0' THEN totalamount+totaltax ELSE 0	END) AS invoice_lt1000_total_sum, --金额小于1000（且大于等于100）发票合计金额税额总和
-
         --金额小于2500（且大于等于1000）
         sum(CASE WHEN totalamount<2500 AND totalamount>=1000 THEN 1 ELSE 0	END) AS invoice_lt2500_cnt, --金额小于2500（且大于等于1000）发票张数
         sum(CASE WHEN (totalamount<2500 AND totalamount>=1000 AND cancelflag='1') OR totalamount<0 THEN 1 ELSE 0	END) AS invoice_lt2500_cr_cnt, --金额小于2500（且大于等于1000）发票作废红冲张数
         sum(CASE WHEN totalamount<2500 AND totalamount>=1000 AND cancelflag='0' THEN totalamount+totaltax ELSE 0	END) AS invoice_lt2500_total_sum, --金额小于2500（且大于等于1000）发票合计金额税额总和
-
         --金额小于5000（且大于等于2500）
         sum(CASE WHEN totalamount<5000 AND totalamount>=2500 THEN 1 ELSE 0	END) AS invoice_lt5000_cnt, --金额小于5000（且大于等于2500）发票张数
         sum(CASE WHEN (totalamount<5000 AND totalamount>=2500 AND cancelflag='1') OR totalamount<0 THEN 1 ELSE 0	END) AS invoice_lt5000_cr_cnt, --金额小于5000（且大于等于2500）发票作废红冲张数
         sum(CASE WHEN totalamount<5000 AND totalamount>=2500 AND cancelflag='0' THEN totalamount+totaltax ELSE 0	END) AS invoice_lt5000_total_sum, --金额小于5000（且大于等于2500）发票合计金额税额总和
-
         --金额小于10000（且大于等于5000）
         sum(CASE WHEN totalamount<10000 AND totalamount>=5000 THEN 1 ELSE 0	END) AS invoice_lt10000_cnt, --金额小于10000（且大于等于5000）发票张数
         sum(CASE WHEN (totalamount<10000 AND totalamount>=5000 AND cancelflag='1') OR totalamount<0 THEN 1 ELSE 0	END) AS invoice_lt10000_cr_cnt, --金额小于10000（且大于等于5000）发票作废红冲张数
         sum(CASE WHEN totalamount<10000 AND totalamount>=5000 AND cancelflag='0' THEN totalamount+totaltax ELSE 0	END) AS invoice_lt10000_total_sum, --金额小于10000（且大于等于5000）发票合计金额税额总和
-
         --金额大于10000发票
         sum(CASE WHEN totalamount>10000  THEN 1 ELSE 0	END) AS invoice_gt10000_cnt, --金额大于10000发票张数
         sum(CASE WHEN (totalamount>10000 AND cancelflag='1') OR totalamount<0 THEN 1 ELSE 0	END) AS invoice_gt10000_cr_cnt, --金额大于10000发票作废红冲张数
@@ -110,7 +100,6 @@ with t2 as (
          FROM
              ${hivevar:DATABASE_DEST}.saleinvoice_tmp
     )t1 GROUP BY sellertaxno,data_month
-
 ),
      
      
@@ -122,8 +111,6 @@ t3 as (
     from ${hivevar:DATABASE_DEST}.saleinvoice_tmp
     group by sellertaxno,data_month
 ),
-
-
 t4 as (
     select
         s3.sellertaxno,
@@ -182,8 +169,6 @@ t6 as (
         on c1.invoiceid=c2.invoiceid
     group by c1.sellertaxno,c1.data_month
 ),
-
-
 cte_p2 as (
     select
         t5.mcht_cd,
@@ -202,7 +187,6 @@ cte_p2 as (
         t2.invoice_red_cnt,
         t2.invoice_total_c_sum,
         t2.invoice_total_r_sum,
-
         t2.invoice_s_cnt,
         t2.invoice_s_cancel_cnt,
         t2.invoice_s_red_cnt,
@@ -239,7 +223,6 @@ cte_p2 as (
         t2.invoice_r_amt_sum,
         t2.invoice_r_tax_sum,
         t2.invoice_r_total_sum,
-
         (CASE WHEN t2.invoice_red_cnt=0 AND t2.invoice_cnt=0 THEN -9997
               WHEN t2.invoice_red_cnt!=0 AND t2.invoice_cnt=0 THEN -9996
               ELSE t2.invoice_red_cnt/t2.invoice_cnt END) AS invoice_red_cnt_rate, --红冲发票张数占比
@@ -252,7 +235,6 @@ cte_p2 as (
         (CASE WHEN t2.invoice_total_c_sum=0 AND t2.invoice_total_sum=0 THEN -9997
               WHEN t2.invoice_total_c_sum!=0 AND t2.invoice_total_sum=0 THEN -9996
               ELSE t2.invoice_total_c_sum/t2.invoice_total_sum END) AS invoice_cancel_total_sum_rate, --作废发票合计金额税金总和比率
-
         t2.invoice_lt100_cnt,
         t2.invoice_lt100_cr_cnt,
         t2.invoice_lt100_total_sum,
@@ -274,7 +256,6 @@ cte_p2 as (
         t6.invoice_detail_cnt,
         t6.invoice_detail_cr_cnt,
         t6.invoice_detail_total_sum,
-
         t3.buyer_cnt,  --统计月交易对手数
         t4.total2 AS buyer_cnt_all, --截止统计月累计的交易对手数
         --在统计月归为A/B/C/F类的交易对手数目
@@ -291,8 +272,5 @@ cte_p2 as (
                        on t3.sellertaxno=t4.sellertaxno and t3.data_month=t4.data_month
              left join t6
                        on t6.sellertaxno=t4.sellertaxno and t6.data_month=t4.data_month
-
 )
-
-
 insert into ${hivevar:DATABASE_DEST}.p2 select * from cte_p2

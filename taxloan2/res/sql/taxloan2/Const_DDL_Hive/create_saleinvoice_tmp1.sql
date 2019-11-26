@@ -1,5 +1,4 @@
 
-
 CREATE TABLE IF NOT EXISTS `${hivevar:DATABASE_DEST}.saleinvoice_tmp1`(
     `sellertaxno` string,
     `sellername` string,

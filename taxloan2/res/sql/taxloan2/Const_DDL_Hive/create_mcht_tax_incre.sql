@@ -1,6 +1,4 @@
 
-
-
 CREATE TABLE  IF NOT EXISTS  ${hivevar:DATABASE_DEST}.mcht_tax_incre (
   `mcht_cd` string,
   `mcht_name` string,

@@ -6,12 +6,17 @@ import util.spark
 
 
 object saleinvoice_tmp {
-  def run(hc:HiveContext): Unit = {
+  def run(hc:HiveContext,isFull:Boolean=false): Unit = {
 //    val conf:SparkConf = new SparkConf().setAppName("saleinvoice_tmp")
 //    val sc:SparkContext = new SparkContext(conf)
 //    val hc:HiveContext = new HiveContext(sc)
 
-    val cjlog_tmp_df:DataFrame = hc.sql(spark.printCmd(constant_full.saleinvoice_tmp.cjlog_tmp))
+    val cjlog_tmp_df:DataFrame =
+      if ( isFull ) {
+        hc.sql(spark.printCmd(constant_full.saleinvoice_tmp.cjlog_tmp_full))
+      } else {
+        hc.sql(spark.printCmd(constant_full.saleinvoice_tmp.cjlog_tmp))
+      }
     cjlog_tmp_df.registerTempTable("cjlog_tmp")
 
     hc.sql(spark.printCmd(constant_full.saleinvoice_tmp.truncate_cjlog_tmp)).show()

@@ -3,6 +3,7 @@ import com.plj.scala.tools.loadString
 
 object saleinvoice_tmp {
   val cjlog_tmp:String =loadString.getString("/sql/dashu/saleinvoice_tmp/cjlog_tmp.sql",this)
+  val cjlog_tmp_full:String =loadString.getString("/sql/dashu/saleinvoice_tmp/cjlog_tmp_full.sql",this)
 
   val truncate_cjlog_tmp:String =loadString.getString("/sql/dashu/saleinvoice_tmp/truncate_cjlog_tmp.sql",this)
 

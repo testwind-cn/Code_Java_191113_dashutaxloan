@@ -28,7 +28,7 @@ object taxloan {
     cmd="set hivevar:LAST_TIME_S='" + spark.get_sLastTime_S + "'"
     hc.sql(spark.printCmd(cmd)).show()
 
-    saleinvoice_tmp.run(hc)
+    saleinvoice_tmp.run(hc,true)
     saleRegionList.run(hc)
     dealRecordInfo.run(hc)
     downCustomerList.run(hc)

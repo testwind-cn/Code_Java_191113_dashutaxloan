@@ -1,7 +1,7 @@
-package taxloan2
+package taxloan1
 
 import org.apache.spark.sql.hive.HiveContext
-import taxloan2.Const.{Const_Common, Const_DDL, Const_counterparty, Const_counterparty_classify, Const_mcht_full_incre, Const_statistics_crossmonth, Const_statistics_month, Const_table_export}
+import taxloan1.Const.{Const_Common, Const_DDL, Const_counterparty, Const_counterparty_classify, Const_mcht_full_incre, Const_statistics_crossmonth, Const_statistics_month, Const_table_export}
 import util.spark
 
 object taxloan {
@@ -11,7 +11,7 @@ object taxloan {
     println("=========  测试命令内容  =========")
     println(Const_Common.insert_control_table_mcht_tax)
 
-    val appName: String = "taxloan2_Init"
+    val appName: String = "taxloan1_Init"
 
     val hc:HiveContext = spark.getHiveContext(appName)
 
@@ -63,7 +63,7 @@ object taxloan {
     println(Const_Common.insert_control_table_mcht_tax)
     println("=========  测试命令内容 E  =========")
 
-    val appName:String=if ( spark.get_isFull ) "taxloan2_full" else "taxloan2_incre"
+    val appName:String=if ( spark.get_isFull ) "taxloan1_full" else "taxloan1_incre"
 
     val hc:HiveContext = spark.getHiveContext(appName)
 

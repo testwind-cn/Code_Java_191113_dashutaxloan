@@ -4,7 +4,7 @@ import org.apache.spark.sql.hive.HiveContext
 import taxloan1.Const.{Const_Common, Const_DDL, Const_counterparty, Const_counterparty_classify, Const_mcht_full_incre, Const_statistics_crossmonth, Const_statistics_month, Const_table_export}
 import util.spark
 
-object taxloan {
+object sparkMain {
 
   def runInit: Unit = {
 // ############################## 日期

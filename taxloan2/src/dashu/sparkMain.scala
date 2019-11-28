@@ -3,7 +3,7 @@ package dashu
 import org.apache.spark.sql.hive.HiveContext
 import util.spark
 
-object taxloan {
+object sparkMain {
 
   def runInit: Unit = {
 

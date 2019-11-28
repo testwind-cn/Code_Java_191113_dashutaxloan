@@ -14,8 +14,8 @@ JAR_PATH=/data/taxloan2/taxloan2.jar
 NUM_EXE=15
 EXE_CORE=4
 EXE_MEM="16G"
-PKG="taxloan2"
-OBJ="taxloan"
+PKG="taxloan1"
+OBJ="sparkMain"
 
 DATE_S_NEW=$(cat "${PROJ_PATH}"time.txt 2>/dev/null)
 DATE_S_OLD=$(sed -n '$p' "${PROJ_PATH}"taxloan_time.txt 2>/dev/null)

@@ -15,7 +15,7 @@ NUM_EXE=15
 EXE_CORE=4
 EXE_MEM="16G"
 PKG="dashu"
-OBJ="taxloan"
+OBJ="sparkMain"
 
 DATE_S_NEW=$(cat "${PROJ_PATH}"time.txt 2>/dev/null)
 DATE_S_OLD=$(sed -n '$p' "${PROJ_PATH}"dashu_time.txt 2>/dev/null)

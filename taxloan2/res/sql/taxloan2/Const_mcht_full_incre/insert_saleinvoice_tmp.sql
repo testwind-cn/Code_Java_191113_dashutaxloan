@@ -1,4 +1,3 @@
-
 -- 过滤重复的发票数据
 with cte_saleinvoice_tmp3 as (
     select *

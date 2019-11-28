@@ -1,4 +1,3 @@
-
 -- 处理oldtaxno!='null'，且oldtaxno!=''的发票数据，合并新老税号数据
 with cte_saleinvoice_tmp2 as (
     select

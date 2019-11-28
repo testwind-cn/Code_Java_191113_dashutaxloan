@@ -1,4 +1,3 @@
-
 -- 处理oldtaxno为空或者null的记录
 with cte_saleinvoice_tmp1 as
 (

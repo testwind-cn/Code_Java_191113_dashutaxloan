@@ -1,0 +1,4 @@
+type=command
+
+command=sudo -E -u hdfs sh dashu-spark-submit-incre.sh
+dependencies=taxloan2-sqoop-export-incre

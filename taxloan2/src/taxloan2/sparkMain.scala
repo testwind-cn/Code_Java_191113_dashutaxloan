@@ -6,68 +6,52 @@ import util.sparkTool
 
 object sparkMain {
 
-  def runInit: Unit = {
-// ############################## 日期
-    println("=========  测试命令内容  =========")
-    println(Const_Common.insert_control_table_mcht_tax)
+  def runInit(hc:HiveContext): Unit = {
 
-    val appName: String = "taxloan2_Init"
-
-    val hc:HiveContext = sparkTool.getHiveContext(appName)
-
-
-    sparkTool.runSettings(hc, Const_Common.global_set_01)
-
-    hc.sql(sparkTool.printCmd(Const_DDL.create_control_table)).show()
-
-    hc.sql(sparkTool.printCmd(Const_DDL.create_cjlog_tmp)).show()
-    hc.sql(sparkTool.printCmd(Const_DDL.create_saleinvoice_tmp1)).show()
-    hc.sql(sparkTool.printCmd(Const_DDL.create_saleinvoice_tmp2)).show()
-    hc.sql(sparkTool.printCmd(Const_DDL.create_saleinvoice_tmp3)).show()
-    hc.sql(sparkTool.printCmd(Const_DDL.create_saleinvoice_tmp)).show()
-    hc.sql(sparkTool.printCmd(Const_DDL.create_mcht_tax)).show()
-    hc.sql(sparkTool.printCmd(Const_DDL.create_latest_month_tmp)).show()
-    hc.sql(sparkTool.printCmd(Const_DDL.create_counterparty)).show()
-    hc.sql(sparkTool.printCmd(Const_DDL.create_counterparty_classify)).show()
-    hc.sql(sparkTool.printCmd(Const_DDL.create_cross_month_tmp)).show()
-    hc.sql(sparkTool.printCmd(Const_DDL.create_p2)).show()
-    hc.sql(sparkTool.printCmd(Const_DDL.create_statistics_month)).show()
-    hc.sql(sparkTool.printCmd(Const_DDL.create_c_p2)).show()
-    hc.sql(sparkTool.printCmd(Const_DDL.create_statistics_crossmonth)).show()
-
-    hc.sql(sparkTool.printCmd(Const_DDL.create_counterparty_classify_incre)).show()
-    hc.sql(sparkTool.printCmd(Const_DDL.create_counterparty_incre)).show()
-    hc.sql(sparkTool.printCmd(Const_DDL.create_mcht_tax_incre)).show()
-    hc.sql(sparkTool.printCmd(Const_DDL.create_statistics_crossmonth_incre)).show()
-    hc.sql(sparkTool.printCmd(Const_DDL.create_statistics_month_incre)).show()
+    hc.sql(sparkTool.printCmd(Const_DDL.create_cjlog)).show()
+    hc.sql(sparkTool.printCmd(Const_DDL.create_saleinvoice)).show()
+    hc.sql(sparkTool.printCmd(Const_DDL.create_saleinvoicedetail)).show()
 
     hc.sql(sparkTool.printCmd(Const_DDL.create_bak_cjlog_tmp)).show()
     hc.sql(sparkTool.printCmd(Const_DDL.create_bak_cross_month_tmp)).show()
     hc.sql(sparkTool.printCmd(Const_DDL.create_bak_latest_month_tmp)).show()
     hc.sql(sparkTool.printCmd(Const_DDL.create_bak_saleinvoice_tmp)).show()
 
+    hc.sql(sparkTool.printCmd(Const_DDL.create_c_p2)).show()
+    hc.sql(sparkTool.printCmd(Const_DDL.create_cjlog_tmp)).show()
+    hc.sql(sparkTool.printCmd(Const_DDL.create_control_table)).show()
 
-    /*
-    cjlog
-    saleinvoice
-    saleinvoicedetail
-    dim_date
-     */
+    hc.sql(sparkTool.printCmd(Const_DDL.create_counterparty)).show()
+    hc.sql(sparkTool.printCmd(Const_DDL.create_counterparty_classify)).show()
+    hc.sql(sparkTool.printCmd(Const_DDL.create_counterparty_classify_incre)).show()
+    hc.sql(sparkTool.printCmd(Const_DDL.create_counterparty_incre)).show()
+
+    hc.sql(sparkTool.printCmd(Const_DDL.create_cross_month_tmp)).show()
+
+    hc.sql(sparkTool.printCmd(Const_DDL.create_dim_date)).show()
+
+    hc.sql(sparkTool.printCmd(Const_DDL.create_latest_month_tmp)).show()
+
+    hc.sql(sparkTool.printCmd(Const_DDL.create_mcht_tax)).show()
+    hc.sql(sparkTool.printCmd(Const_DDL.create_mcht_tax_incre)).show()
+
+    hc.sql(sparkTool.printCmd(Const_DDL.create_p2)).show()
+
+    hc.sql(sparkTool.printCmd(Const_DDL.create_saleinvoice_tmp)).show()
+    hc.sql(sparkTool.printCmd(Const_DDL.create_saleinvoice_tmp1)).show()
+    hc.sql(sparkTool.printCmd(Const_DDL.create_saleinvoice_tmp2)).show()
+    hc.sql(sparkTool.printCmd(Const_DDL.create_saleinvoice_tmp3)).show()
+
+    hc.sql(sparkTool.printCmd(Const_DDL.create_statistics_crossmonth)).show()
+    hc.sql(sparkTool.printCmd(Const_DDL.create_statistics_crossmonth_incre)).show()
+    hc.sql(sparkTool.printCmd(Const_DDL.create_statistics_month)).show()
+    hc.sql(sparkTool.printCmd(Const_DDL.create_statistics_month_incre)).show()
+
   }
 
-  def runFullIncre(isFull:Boolean): Unit ={
+  def runFullIncre(hc:HiveContext,isFull:Boolean): Unit ={
 
     var cmd : String=null
-
-    println("=========  测试命令内容 B  =========")
-    println(Const_Common.insert_control_table_mcht_tax)
-    println("=========  测试命令内容 E  =========")
-
-    val appName:String=if ( sparkTool.get_isFull ) "taxloan2_full" else "taxloan2_incre"
-
-    val hc:HiveContext = sparkTool.getHiveContext(appName)
-
-    sparkTool.runSettings(hc, Const_Common.global_set_01)
 
     sparkTool.setLastTimeFromArgs()
     // spark.setLastTimeFromHive(hc,"cjlog_last")
@@ -282,15 +266,27 @@ object sparkMain {
 
     sparkTool.getArgs(args)
 
+    val appName:String=
+      if (sparkTool.get_isInit)
+        "taxloan2_init"
+      else if ( sparkTool.get_isFull )
+        "taxloan2_full"
+      else
+        "taxloan2_incre"
+
+    val hc:HiveContext = sparkTool.getHiveContext(appName)
+
+    sparkTool.runSettings(hc, Const_Common.global_set_01)
+
     if (sparkTool.get_isInit) {
-      println("========执行初始化=======")
-      runInit
-      return
+      println("========只执行初始化=======")
+      runInit(hc)
+    } else {
+      println("========先执行初始化=======")
+      runInit(hc)
+      println("========执行 全量或者 增量=======是否全量:"+sparkTool.get_isFull.toString)
+      runFullIncre(hc,sparkTool.get_isFull)
     }
-
-    println("========执行 全量或者 增量=======是否全量:"+sparkTool.get_isFull.toString)
-
-    runFullIncre(sparkTool.get_isFull)
   }
 
 }

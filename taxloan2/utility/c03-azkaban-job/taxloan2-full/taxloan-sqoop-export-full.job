@@ -1,0 +1,4 @@
+type=command
+
+command=sh taxloan-sqoop-export-full.sh
+dependencies=taxloan-spark-submit-full

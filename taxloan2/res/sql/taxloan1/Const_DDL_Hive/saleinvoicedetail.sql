@@ -1,4 +1,4 @@
-CREATE TABLE ${hivevar:DATABASE_DEST}.saleinvoicedetail
+CREATE TABLE IF NOT EXISTS ${hivevar:DATABASE_SRC}.saleinvoicedetail
 ( `cid` string,
   `amount` double,
   `billid` string,

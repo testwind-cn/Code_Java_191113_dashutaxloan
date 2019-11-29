@@ -1,5 +1,4 @@
-
-CREATE TABLE IF NOT EXISTS ${hivevar:DATABASE_DEST}.statistics_month_incre(
+CREATE TABLE IF NOT EXISTS ${hivevar:DATABASE_DEST}.statistics_month_incre (
   `mcht_cd` string,
   `data_month` string,
   `invoice_sc_cnt` int,

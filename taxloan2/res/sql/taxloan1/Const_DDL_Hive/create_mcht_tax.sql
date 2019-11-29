@@ -1,7 +1,6 @@
-
 --商户表
 -- DROP TABLE IF EXISTS dm_taxloan.mcht_tax;
-CREATE TABLE IF NOT EXISTS ${hivevar:DATABASE_DEST}.mcht_tax(
+CREATE TABLE IF NOT EXISTS ${hivevar:DATABASE_DEST}.mcht_tax (
                                     mcht_cd String COMMENT '销方商户编号',
                                     mcht_name String COMMENT '商户名称',
                                     mcht_tax_cd String COMMENT '商户税号（销方）',

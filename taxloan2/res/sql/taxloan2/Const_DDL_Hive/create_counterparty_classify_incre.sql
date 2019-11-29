@@ -1,5 +1,4 @@
-
-CREATE TABLE  IF NOT EXISTS ${hivevar:DATABASE_DEST}.counterparty_classify_incre(
+CREATE TABLE  IF NOT EXISTS ${hivevar:DATABASE_DEST}.counterparty_classify_incre (
   `mcht_cd` string,
   `data_month` string,
   `buyer_name` string,

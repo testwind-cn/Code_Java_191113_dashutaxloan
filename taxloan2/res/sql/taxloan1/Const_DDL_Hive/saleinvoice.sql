@@ -1,4 +1,4 @@
-CREATE TABLE ${hivevar:DATABASE_DEST}.saleinvoice(
+CREATE TABLE IF NOT EXISTS ${hivevar:DATABASE_SRC}.saleinvoice (
                                           `cid` string,
                                           `agentcode` string,
                                           `authstate` int,

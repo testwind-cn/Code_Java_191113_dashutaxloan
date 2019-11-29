@@ -1,4 +1,4 @@
-CREATE TABLE `dm_taxloan2.cjlog`(
+CREATE TABLE IF NOT EXISTS ${hivevar:DATABASE_SRC}.cjlog (
                                     `cid` string,
                                     `allnum` int,
                                     `begin_time` string,

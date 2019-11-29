@@ -1,5 +1,4 @@
-
-CREATE TABLE IF NOT EXISTS `${hivevar:DATABASE_DEST}.c_p2`(
+CREATE TABLE IF NOT EXISTS ${hivevar:DATABASE_DEST}.c_p2 (
 	  `mcht_cd` string,
 	  `month` string,
 	  `invoice_r_all_cnt_l3m` bigint,

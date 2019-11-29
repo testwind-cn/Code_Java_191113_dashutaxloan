@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS dm_taxloan.bak_latest_montn_tmp(
+CREATE TABLE IF NOT EXISTS ${hivevar:DATABASE_DEST}.bak_latest_montn_tmp(
   `mcht_cd` string,
   `month` string,
   `buyer_tax_cd` string,

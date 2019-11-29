@@ -1,7 +1,6 @@
-
 --月统计表
 -- DROP TABLE IF EXISTS dm_taxloan.statistics_month;
-CREATE TABLE IF NOT EXISTS ${hivevar:DATABASE_DEST}.statistics_month(
+CREATE TABLE IF NOT EXISTS ${hivevar:DATABASE_DEST}.statistics_month (
                                             mcht_cd String COMMENT '销方商户编号',
                                             data_month String COMMENT '统计月份',
                                             invoice_sc_cnt int COMMENT '增值税开票张数',

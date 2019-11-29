@@ -1,7 +1,6 @@
-
 -- 交易对手分类表
 -- DROP TABLE IF EXISTS ${hivevar:DATABASE_DEST}.counterparty_classify;
-CREATE TABLE IF NOT EXISTS  ${hivevar:DATABASE_DEST}.counterparty_classify(
+CREATE TABLE IF NOT EXISTS  ${hivevar:DATABASE_DEST}.counterparty_classify (
                                                  mcht_cd String COMMENT '销方商户编号',
                                                  data_month String COMMENT '统计月份',
                                                  buyer_name String COMMENT '交易对手（购方）名称',

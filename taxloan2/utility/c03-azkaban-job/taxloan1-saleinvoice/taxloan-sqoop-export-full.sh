@@ -8,7 +8,7 @@ source /etc/profile
 source /var/lib/hadoop-hdfs/.bash_profile
 
 CURR_DATE=`date +%Y-%m-%d`
-HIVE_DB="dm_taxloan"
+HIVE_DEST="dm_taxloan"
 
 #IP="10.91.1.10"
 #PORT="3306"
@@ -37,7 +37,7 @@ echo "=========== MYSQL OK ==========="
 ### e0506 saleinvoice
 # mysql -u"${USER}" -p"${PASS_S}" -h"${IP}" -P"${PORT}" -e "TRUNCATE TABLE ${MYSQL_DB}.saleinvoice;COMMIT;"
 sqoop export \
---hcatalog-database ${HIVE_DB} \
+--hcatalog-database ${HIVE_DEST} \
 --hcatalog-table saleinvoice \
 --connect ${URL} \
 --username ${USER} \

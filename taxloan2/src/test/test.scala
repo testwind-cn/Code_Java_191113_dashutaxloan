@@ -4,7 +4,7 @@ import com.plj.scala.tools.{TimeTools, loadString}
 import org.apache.spark.{SparkConf, SparkContext}
 import org.apache.spark.sql.hive.HiveContext
 import taxloan2.Const.{Const_Common, Const_counterparty, Const_counterparty_classify, Const_mcht_full_incre, Const_statistics_crossmonth, Const_statistics_month, Const_table_export}
-import util.spark
+import util.sparkTool
 
 object test {
 
@@ -74,7 +74,7 @@ object test {
     val sc:SparkContext = null // = new SparkContext(conf)
     val hc:HiveContext= null  //= new HiveContext(sc)
 
-   spark.runSettings(hc, Const_Common.global_set_01)
+   sparkTool.runSettings(hc, Const_Common.global_set_01)
 
 
     //    Const_Common.create_cjlog_tmp.sql

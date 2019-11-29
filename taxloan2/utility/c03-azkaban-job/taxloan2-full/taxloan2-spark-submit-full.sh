@@ -33,4 +33,6 @@ sudo -E -u hdfs spark-submit \
 --conf spark.sql.shuffle.partitions=150 \
 --name "${OBJ}" \
 --jars "${JDBC_HOME}" \
-${JAR_PATH} --full --new="${DATE_S_NEW}" --old="${DATE_S_OLD}"
+${JAR_PATH} --full --new="${DATE_S_NEW}" --old="${DATE_S_OLD}" \
+--hivevar:DATABASE_SRC="${HIVE_SRC}" \
+--hivevar:DATABASE_DEST="${HIVE_DEST}"

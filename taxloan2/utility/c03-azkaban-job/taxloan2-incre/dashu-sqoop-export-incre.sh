@@ -18,7 +18,7 @@ echo "=========== MYSQL OK ==========="
 ### e0502 deal_record
 #mysql -u"${USER}" -p"${PASS_S}" -h"${IP}" -P"${PORT}" -e "TRUNCATE TABLE ${MYSQL_DB}.deal_record; COMMIT;"
 sqoop export \
---hcatalog-database ${HIVE_DB} \
+--hcatalog-database ${HIVE_DEST} \
 --hcatalog-table deal_record \
 --fields-terminated-by "\0001" \
 --connect ${URL} \
@@ -34,7 +34,7 @@ sqoop export \
 ### e0503 down_customer_list
 #mysql -u"${USER}" -p"${PASS_S}" -h"${IP}" -P"${PORT}" -e "TRUNCATE TABLE ${MYSQL_DB}.down_customer_list; COMMIT;"
 sqoop export \
---hcatalog-database ${HIVE_DB} \
+--hcatalog-database ${HIVE_DEST} \
 --hcatalog-table down_customer_list \
 --fields-terminated-by "\0001" \
 --connect ${URL} \
@@ -51,7 +51,7 @@ sqoop export \
 ### e0504 sale_region_list
 #mysql -u"${USER}" -p"${PASS_S}" -h"${IP}" -P"${PORT}" -e "TRUNCATE TABLE ${MYSQL_DB}.statistics_month;COMMIT;"
 sqoop export \
---hcatalog-database ${HIVE_DB} \
+--hcatalog-database ${HIVE_DEST} \
 --hcatalog-table sale_region_list \
 --fields-terminated-by "\0001" \
 --connect ${URL} \
@@ -68,7 +68,7 @@ sqoop export \
 ### e0505 saleinvoice_month
 #mysql -u"${USER}" -p"${PASS_S}" -h"${IP}" -P"${PORT}" -e "TRUNCATE TABLE ${MYSQL_DB}.saleinvoice_month; COMMIT;"
 sqoop export \
---hcatalog-database ${HIVE_DB} \
+--hcatalog-database ${HIVE_DEST} \
 --hcatalog-table saleinvoice_month \
 --fields-terminated-by "\0001" \
 --connect ${URL} \
@@ -94,7 +94,7 @@ echo "插入本次开始时间  ${DATE_S_NEW}"
 
 # 日志表
 echo  "${DATE_S_NEW}" >> "${PROJ_PATH}"dashu_time.txt
-THE_CMD="hive -e \"insert into ${HIVE_DB}.control_table  select 'cjlog_last_dashu' as table_name, '${DATE_S_NEW}' as export_date\""
+THE_CMD="hive -e \"insert into ${HIVE_DEST}.control_table  select 'cjlog_last_dashu' as table_name, '${DATE_S_NEW}' as export_date\""
 echo -e "\n\n========== 开始处理命令 ==========\n"
 echo "su -p admin -c \"${THE_CMD}\""
 su -p admin -c "${THE_CMD}"

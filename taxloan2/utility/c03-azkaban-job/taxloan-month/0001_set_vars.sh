@@ -16,7 +16,8 @@ then        # 10.91.1.100
     USER="datauser"
     PASS_F="/user/hive/warehouse/mysql_pwd_202"
     PASS_S="kpo9raFllycl@fc0"
-    HIVE_DB="dm_taxloan"
+    HIVE_SRC="dm_taxloan"
+    HIVE_DEST="dm_taxloan"
 
 
 else        # 10.91.1.21
@@ -30,7 +31,8 @@ else        # 10.91.1.21
     USER="root"
     PASS_F="/user/hive/warehouse/mysql_pwd_202"
     PASS_S="Redhat@2016"
-    HIVE_DB="dm_taxloan"
+    HIVE_SRC="dm_taxloan"
+    HIVE_DEST="dm_taxloan"
 
 fi
 

@@ -6,14 +6,14 @@ URL="jdbc:mysql://${IP}:${PORT}/${MYSQL_DB}?useSSL=false"
 USER="root"
 PASS_F="/user/hive/warehouse/mysql_pwd_202"
 PASS_S="Redhat@2016"
-HIVE_DB="dm_taxloan"
+HIVE_DEST="dm_taxloan"
 
 
 
 mysql -u"${USER}" -p"${PASS_S}" -h"${IP}" -P"${PORT}" -e "TRUNCATE TABLE ${MYSQL_DB}.deal_record; COMMIT;"
 
 sudo -E -u hive sqoop export \
---hcatalog-database ${HIVE_DB} \
+--hcatalog-database ${HIVE_DEST} \
 --hcatalog-table deal_record \
 --fields-terminated-by "\0001" \
 --connect ${URL} \
@@ -29,7 +29,7 @@ sudo -E -u hive sqoop export \
 mysql -u"${USER}" -p"${PASS_S}" -h"${IP}" -P"${PORT}" -e "TRUNCATE TABLE ${MYSQL_DB}.down_customer_list; COMMIT;"
 
 sudo -E -u hive sqoop export \
---hcatalog-database ${HIVE_DB} \
+--hcatalog-database ${HIVE_DEST} \
 --hcatalog-table down_customer_list \
 --fields-terminated-by "\0001" \
 --connect ${URL} \
@@ -46,7 +46,7 @@ sudo -E -u hive sqoop export \
 mysql -u"${USER}" -p"${PASS_S}" -h"${IP}" -P"${PORT}" -e "TRUNCATE TABLE ${MYSQL_DB}.sale_region_list; COMMIT;"
 
 sudo -E -u hive sqoop export \
---hcatalog-database ${HIVE_DB} \
+--hcatalog-database ${HIVE_DEST} \
 --hcatalog-table sale_region_list \
 --fields-terminated-by "\0001" \
 --connect ${URL} \
@@ -62,7 +62,7 @@ sudo -E -u hive sqoop export \
 mysql -u"${USER}" -p"${PASS_S}" -h"${IP}" -P"${PORT}" -e "TRUNCATE TABLE ${MYSQL_DB}.saleinvoice_month; COMMIT;"
 
 sudo -E -u hive sqoop export \
---hcatalog-database ${HIVE_DB} \
+--hcatalog-database ${HIVE_DEST} \
 --hcatalog-table saleinvoice_month \
 --fields-terminated-by "\0001" \
 --connect ${URL} \

@@ -8,7 +8,7 @@ source /etc/profile
 source /var/lib/hadoop-hdfs/.bash_profile
 
 CURR_DATE=`date +%Y-%m-%d`
-HIVE_DB="dm_taxloan"
+HIVE_DEST="dm_taxloan"
 
 #IP="10.91.1.10"
 #PORT="3306"
@@ -32,7 +32,7 @@ source ./0001_set_vars.sh
 ### e0502 counterparty
 #mysql -u"$USER" -p"${PASS_S}" -h"${IP}" -P"${PORT}" -e "TRUNCATE TABLE ${MYSQL_DB}.counterparty;COMMIT;"
 sqoop export \
---hcatalog-database ${HIVE_DB} \
+--hcatalog-database ${HIVE_DEST} \
 --hcatalog-table counterparty_incre \
 --fields-terminated-by "\0001" \
 --connect ${URL} \
@@ -48,7 +48,7 @@ sqoop export \
 ### e0503 counterparty_classify
 #mysql -u"${USER}" -p"${PASS_S}" -h"${IP}" -P"${PORT}" -e "TRUNCATE TABLE ${MYSQL_DB}.counterparty_classify;COMMIT;"
 sqoop export \
---hcatalog-database ${HIVE_DB} \
+--hcatalog-database ${HIVE_DEST} \
 --hcatalog-table counterparty_classify_incre \
 --fields-terminated-by "\0001" \
 --connect ${URL} \
@@ -65,7 +65,7 @@ sqoop export \
 ### e0504 statistics_month
 #mysql -u"${USER}" -p"${PASS_S}" -h"${IP}" -P"${PORT}" -e "TRUNCATE TABLE ${MYSQL_DB}.statistics_month;COMMIT;"
 sqoop export \
---hcatalog-database ${HIVE_DB} \
+--hcatalog-database ${HIVE_DEST} \
 --hcatalog-table statistics_month_incre \
 --fields-terminated-by "\0001" \
 --connect ${URL} \
@@ -82,7 +82,7 @@ sqoop export \
 ### e0505 statistics_crossmonth
 #mysql -u"${USER}" -p"${PASS_S}" -h"${IP}" -P"${PORT}" -e "TRUNCATE TABLE ${MYSQL_DB}.statistics_crossmonth;COMMIT;"
 sqoop export \
---hcatalog-database ${HIVE_DB} \
+--hcatalog-database ${HIVE_DEST} \
 --hcatalog-table statistics_crossmonth_incre \
 --fields-terminated-by "\0001" \
 --connect ${URL} \
@@ -97,7 +97,7 @@ sqoop export \
 ### e0501 mcht_tax
 #mysql -u"${USER}" -p"${PASS_S}" -h"${IP}" -P"${PORT}" -e "TRUNCATE TABLE ${MYSQL_DB}.mcht_tax;COMMIT;"
 sqoop export \
---hcatalog-database ${HIVE_DB} \
+--hcatalog-database ${HIVE_DEST} \
 --hcatalog-table mcht_tax_incre \
 --fields-terminated-by "\0001" \
 --connect ${URL} \

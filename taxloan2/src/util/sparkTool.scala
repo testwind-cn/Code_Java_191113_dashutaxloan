@@ -5,7 +5,7 @@ import org.apache.spark.sql.hive.HiveContext
 import com.plj.scala.tools.{TimeTools, loadString}
 
 
-object spark {
+object sparkTool {
 
   private var theNewTime:String=""
   private var theOldTime:String=""
@@ -13,6 +13,7 @@ object spark {
   private var sLastTime_S:String=""
   private var isFull:Boolean=false
   private var isInit:Boolean=false
+  private var hivevarArray:Array[String]=Array[String]()
 
   def get_theNewTime:String={
     theNewTime
@@ -119,13 +120,18 @@ group by table_name order by table_name
     the_opt = args.find(x => x.toLowerCase.trim.equals("--incre"))
     if (the_opt.isDefined) isFull = false
 
+    hivevarArray = args
+      .filter(x => x.toLowerCase.startsWith("--hivevar:"))
+      .map(x => "set " + x.substring(2))
+    // set hivevar:DATABASE_DEST=dm_taxloan1
+
     println("========执行 全量或者 增量=======是否全量:"+isFull.toString)
 
 
-    theOldTime = spark.getTimeArg(args,"--old=20",6,-31)
+    theOldTime = getTimeArg(args,"--old=20",6,-31)
     println("==== 旧的时间是："+theOldTime)
 
-    theNewTime = spark.getTimeArg(args,"--new=20",6)
+    theNewTime = getTimeArg(args,"--new=20",6)
     println("==== 新的时间是："+theNewTime)
   }
 
@@ -144,6 +150,12 @@ group by table_name order by table_name
         println("============ 3.设置变量 ===========")
       }
     )
+    hivevarArray.foreach( x =>
+      {
+        println("============ 4.设置命令行参数变量 ===========" + x)
+        hc.sql(x).show
+      }
+    )
   }
 
   def getAddTaxno(hc: HiveContext,obj: Object=null):Unit={
@@ -153,11 +165,11 @@ group by table_name order by table_name
       println("========= 查询到手动添加商户 =============")
       add_taxno.foreach(println)
       cmd = "set hivevar:ADD_TAXNO=or taxno in (" + add_taxno.map(x => "'" + x + "'").mkString(",") + ")"
-      hc.sql(spark.printCmd(cmd)).show()
+      hc.sql(printCmd(cmd)).show()
     } else {
       println("========= 没有手动添加商户 =============")
       cmd = "set hivevar:ADD_TAXNO="
-      hc.sql(spark.printCmd(cmd)).show()
+      hc.sql(printCmd(cmd)).show()
     }
     loadString.clearFile("add_taxno.txt",obj)
 

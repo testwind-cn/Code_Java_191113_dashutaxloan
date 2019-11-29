@@ -1,7 +1,7 @@
 package dashu
 
 import org.apache.spark.sql.hive.HiveContext
-import util.spark
+import util.sparkTool
 
 object sparkMain {
 
@@ -15,18 +15,18 @@ object sparkMain {
 
     val appName:String=if ( isFull ) "dashu_full" else "dashu_incre"
 
-    val hc:HiveContext = spark.getHiveContext(appName)
+    val hc:HiveContext = sparkTool.getHiveContext(appName)
 
-    spark.runSettings(hc, dashu.constant_common.Const_common.global_set_01)
+    sparkTool.runSettings(hc, dashu.constant_common.Const_common.global_set_01)
 
-    spark.setLastTimeFromArgs()
+    sparkTool.setLastTimeFromArgs()
     // spark.setLastTimeFromHive(hc)
 
-    cmd="set hivevar:LAST_TIME='" + spark.get_sLastTime + "'"
-    hc.sql(spark.printCmd(cmd)).show()
+    cmd="set hivevar:LAST_TIME='" + sparkTool.get_sLastTime + "'"
+    hc.sql(sparkTool.printCmd(cmd)).show()
 
-    cmd="set hivevar:LAST_TIME_S='" + spark.get_sLastTime_S + "'"
-    hc.sql(spark.printCmd(cmd)).show()
+    cmd="set hivevar:LAST_TIME_S='" + sparkTool.get_sLastTime_S + "'"
+    hc.sql(sparkTool.printCmd(cmd)).show()
 
     saleinvoice_tmp.run(hc,true)
     saleRegionList.run(hc)
@@ -38,17 +38,17 @@ object sparkMain {
 
   def main(args:Array[String]):Unit = {
 
-    spark.getArgs(args)
+    sparkTool.getArgs(args)
 
-    if (spark.get_isInit) {
+    if (sparkTool.get_isInit) {
       println("========执行初始化=======")
       runInit
       return
     }
 
-    println("========执行 全量或者 增量=======是否全量:"+spark.get_isFull.toString)
+    println("========执行 全量或者 增量=======是否全量:"+sparkTool.get_isFull.toString)
 
-    runFullIncre(spark.get_isFull)
+    runFullIncre(sparkTool.get_isFull)
   }
 
 

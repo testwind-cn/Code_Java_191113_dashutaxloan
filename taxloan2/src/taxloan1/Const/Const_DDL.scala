@@ -4,6 +4,9 @@ import com.plj.scala.tools.loadString
 
 object Const_DDL {
 
+  val create_db1: String =loadString.getString("/sql/taxloan1/Const_DDL_Hive/0000_create_db1.sql",this)
+  val create_db2: String =loadString.getString("/sql/taxloan1/Const_DDL_Hive/0000_create_db2.sql",this)
+
   val create_cjlog: String =loadString.getString("/sql/taxloan1/Const_DDL_Hive/cjlog.sql",this)
   val create_saleinvoice: String =loadString.getString("/sql/taxloan1/Const_DDL_Hive/saleinvoice.sql",this)
   val create_saleinvoicedetail: String =loadString.getString("/sql/taxloan1/Const_DDL_Hive/saleinvoicedetail.sql",this)

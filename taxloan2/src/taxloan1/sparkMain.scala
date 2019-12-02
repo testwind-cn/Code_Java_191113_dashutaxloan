@@ -8,6 +8,9 @@ object sparkMain {
 
   def runInit(hc:HiveContext): Unit = {
 
+    hc.sql(sparkTool.printCmd(Const_DDL.create_db1)).show()
+    hc.sql(sparkTool.printCmd(Const_DDL.create_db2)).show()
+
     hc.sql(sparkTool.printCmd(Const_DDL.create_cjlog)).show()
     hc.sql(sparkTool.printCmd(Const_DDL.create_saleinvoice)).show()
     hc.sql(sparkTool.printCmd(Const_DDL.create_saleinvoicedetail)).show()

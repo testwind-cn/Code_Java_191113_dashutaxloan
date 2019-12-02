@@ -23,10 +23,10 @@ CREATE TABLE  IF NOT EXISTS ${MYSQL_DB}.mcht_tax_hive (
   create_user varchar(100) DEFAULT NULL COMMENT '创建人',
   modify_time datetime DEFAULT NULL COMMENT '修改时间',
   modify_user varchar(100) DEFAULT NULL COMMENT '修改人',
-  PRIMARY KEY (id),
-  UNIQUE KEY index_mcht_cd (mcht_cd),
-  KEY idx_mcht_cd (mcht_cd),
-  KEY idx_mcht_tax_cd (mcht_tax_cd) USING BTREE
+  PRIMARY KEY (id) -- ,
+--  UNIQUE KEY index_mcht_cd (mcht_cd),
+--  KEY idx_mcht_cd (mcht_cd),
+--  KEY idx_mcht_tax_cd (mcht_tax_cd) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='【税金贷】商户表';
 
 
@@ -48,10 +48,10 @@ CREATE TABLE IF NOT EXISTS ${MYSQL_DB}.counterparty_hive (
   create_user varchar(100) DEFAULT NULL COMMENT '创建人',
   modify_time datetime DEFAULT NULL COMMENT '修改时间',
   modify_user varchar(100) DEFAULT NULL COMMENT '修改人',
-  PRIMARY KEY (id),
-  UNIQUE KEY index_unique (mcht_cd,data_month,buyer_name,buyer_tax_cd),
-  KEY idx_mcht_cd (mcht_cd),
-  KEY idx_data_month (data_month) USING BTREE
+  PRIMARY KEY (id) --  ,
+--  UNIQUE KEY index_unique (mcht_cd,data_month,buyer_name,buyer_tax_cd),
+--  KEY idx_mcht_cd (mcht_cd),
+--  KEY idx_data_month (data_month) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='【税金贷】交易对手表';
 
 
@@ -83,9 +83,9 @@ CREATE TABLE  IF NOT EXISTS ${MYSQL_DB}.counterparty_classify_hive (
   create_user varchar(100) DEFAULT NULL COMMENT '创建人',
   modify_time datetime DEFAULT NULL COMMENT '修改时间',
   modify_user varchar(100) DEFAULT NULL COMMENT '修改人',
-  PRIMARY KEY (id),
-  UNIQUE KEY index_unique (mcht_cd,data_month,buyer_name,buyer_tax_cd),
-  KEY idx_mcht_cd_data_month (mcht_cd,data_month) USING BTREE
+  PRIMARY KEY (id) -- ,
+--  UNIQUE KEY index_unique (mcht_cd,data_month,buyer_name,buyer_tax_cd),
+--  KEY idx_mcht_cd_data_month (mcht_cd,data_month) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='【税金贷】交易对手分类表';
 
 
@@ -179,9 +179,9 @@ CREATE TABLE  IF NOT EXISTS ${MYSQL_DB}.statistics_month_hive (
   create_user varchar(100) DEFAULT NULL COMMENT '创建人',
   modify_time datetime DEFAULT NULL COMMENT '修改时间',
   modify_user varchar(100) DEFAULT NULL COMMENT '修改人',
-  PRIMARY KEY (id),
-  UNIQUE KEY index_unique (mcht_cd,data_month),
-  KEY idx_mcht_cd_data_month (mcht_cd,data_month) USING BTREE
+  PRIMARY KEY (id) -- ,
+--  UNIQUE KEY index_unique (mcht_cd,data_month),
+--  KEY idx_mcht_cd_data_month (mcht_cd,data_month) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='【税金贷】月统计表';
 
 
@@ -541,9 +541,9 @@ CREATE TABLE  IF NOT EXISTS ${MYSQL_DB}.statistics_crossmonth_hive (
   create_user varchar(100) DEFAULT NULL COMMENT '创建人',
   modify_time datetime DEFAULT NULL COMMENT '修改时间',
   modify_user varchar(100) DEFAULT NULL COMMENT '修改人',
-  PRIMARY KEY (id),
-  UNIQUE KEY index_unique (mcht_cd,data_month),
-  KEY idx_mcht_cd_data_month (mcht_cd,data_month) USING BTREE
+  PRIMARY KEY (id) -- ,
+--  UNIQUE KEY index_unique (mcht_cd,data_month),
+--  KEY idx_mcht_cd_data_month (mcht_cd,data_month) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='【税金贷】跨月统计表';
 
 

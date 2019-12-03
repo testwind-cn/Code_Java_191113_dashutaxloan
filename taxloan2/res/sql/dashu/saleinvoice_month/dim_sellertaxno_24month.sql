@@ -1,7 +1,7 @@
 select
     t1.sellertaxno,
     d.month
-from ${hivevar:DATABASE_DEST}.dim_date d cross join
+from ${hivevar:DATABASE_DEST}.dim_month d cross join
      (
          select
              distinct sellertaxno

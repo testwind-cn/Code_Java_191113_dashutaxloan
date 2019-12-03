@@ -1,10 +1,10 @@
--- CREATE TABLE ${hivevar:DATABASE_DEST}.dim_date
+-- CREATE TABLE ${hivevar:DATABASE_DEST}.dim_month
 -- (
 --  `month` string,
 --  `year` smallint)
 -- ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde'
 -- STORED AS TEXTFILE
-CREATE TABLE IF NOT EXISTS ${hivevar:DATABASE_DEST}.dim_date
+CREATE TABLE IF NOT EXISTS ${hivevar:DATABASE_DEST}.dim_month
 ROW FORMAT SERDE
     'org.apache.hadoop.hive.serde2.OpenCSVSerde'
 WITH SERDEPROPERTIES (

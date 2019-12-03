@@ -19,6 +19,8 @@ object sparkMain {
 
     sparkTool.runSettings(hc, dashu.constant_common.Const_common.global_set_01)
 
+    hc.sql(sparkTool.printCmd(dashu.constant_common.Const_common.create_dim_date)).show()
+
     sparkTool.setLastTimeFromArgs()
     // spark.setLastTimeFromHive(hc)
 

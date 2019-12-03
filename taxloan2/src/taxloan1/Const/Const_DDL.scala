@@ -27,7 +27,7 @@ object Const_DDL {
 
   val create_cross_month_tmp: String =loadString.getString("/sql/taxloan1/Const_DDL_Hive/create_cross_month_tmp.sql",this)
 
-  val create_dim_date: String =loadString.getString("/sql/taxloan1/Const_DDL_Hive/create_dim_date.sql",this)
+  val create_dim_month: String =loadString.getString("/sql/taxloan1/Const_DDL_Hive/create_dim_month.sql",this)
 
   val create_latest_month_tmp: String =loadString.getString("/sql/taxloan1/Const_DDL_Hive/create_latest_month_tmp.sql",this)
 

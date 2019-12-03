@@ -31,7 +31,7 @@ object sparkMain {
 
     hc.sql(sparkTool.printCmd(Const_DDL.create_cross_month_tmp)).show()
 
-    hc.sql(sparkTool.printCmd(Const_DDL.create_dim_date)).show()
+    hc.sql(sparkTool.printCmd(Const_DDL.create_dim_month)).show()
 
     hc.sql(sparkTool.printCmd(Const_DDL.create_latest_month_tmp)).show()
 

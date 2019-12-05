@@ -28,13 +28,13 @@ cte_cross_month_tmp as
     (
         select
             cte_t1.mcht_cd,
-            d.month,
+            d.month_value as month,
             (case
                 when length(CAST(MONTH(cte_t1.first_invoicedate) AS STRING)) = 1
                     then concat(YEAR(cte_t1.first_invoicedate), "0", MONTH(cte_t1.first_invoicedate))
                 else concat(YEAR(cte_t1.first_invoicedate), MONTH(cte_t1.first_invoicedate))
             end) AS data_month
-        from ${hivevar:DATABASE_DEST}.dim_date d
+        from dim_db.dim_month d
         cross join cte_t1
     ) t2
     where datediff(to_date(from_unixtime(unix_timestamp(t2.month, 'yyyyMM'))),

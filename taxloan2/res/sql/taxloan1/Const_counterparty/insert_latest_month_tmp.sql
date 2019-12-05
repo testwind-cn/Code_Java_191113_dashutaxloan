@@ -12,9 +12,9 @@ latest_month_tmp as
             t1.sellertaxno as mcht_cd,
             t1.buyertaxno,
             t1.buyername,
-            d.month,
+            d.month_value as month,
             t1.data_month AS data_month
-        from ${hivevar:DATABASE_DEST}.dim_month d cross join
+        from dim_db.dim_month d cross join
          (
              select
                  tt.sellertaxno,

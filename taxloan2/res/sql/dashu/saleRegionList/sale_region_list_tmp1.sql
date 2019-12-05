@@ -7,7 +7,7 @@ select
     count(t1.buyertaxno) as regionDealNum --交易次数（次）
 from
     ${hivevar:DATABASE_SRC}.saleinvoice t1
-        left join ${hivevar:DATABASE_DEST}.idno_province_mapping mapping on
+        left join dim_db.idno_province_mapping mapping on
             case when t1.buyertaxno like '91%' then substring(t1.buyertaxno,3,2) else substring(t1.buyertaxno,1,2) end = mapping.provinceid
 where t1.buyertaxno<>'' and t1.buyertaxno is not null and t1.buyertaxno not like '00%'  --剔除无效数据
   and from_unixtime(unix_timestamp(t1.invoicedate,'yyyy-MM-dd'))>= from_unixtime(unix_timestamp('1970-01-01','yyyy-MM-dd')) --日期大于等于1970-01-01

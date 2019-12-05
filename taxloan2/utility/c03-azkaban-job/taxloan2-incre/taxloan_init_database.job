@@ -1,0 +1,3 @@
+type=command
+
+command=echo skip sh taxloan_init_database.sh

@@ -9,8 +9,8 @@
 
 source ./0000_set_vars_input.sh
 
-DATE_S_NEW=$(cat "${PROJ_PATH}"time.txt 2>/dev/null)
-DATE_S_OLD=$(sed -n '$p' "${PROJ_PATH}"taxloan_time.txt 2>/dev/null)
+DATE_S_NEW=$(cat "${PROJ_PATH}"newtime_"${HIVE_SRC}".txt 2>/dev/null)
+DATE_S_OLD=$(sed -n '$p' "${PROJ_PATH}"oldtime_"${PKG}"_"${HIVE_DEST}".txt 2>/dev/null)
 
 echo "开始时间  ${DATE_S_NEW}"
 echo "上次时间  ${DATE_S_OLD}"
@@ -27,5 +27,6 @@ sudo -E -u admin spark-submit \
 --jars "${JDBC_HOME}" \
 ${JAR_PATH} --full --new="${DATE_S_NEW}" --old="${DATE_S_OLD}" \
 --hivevar:DATABASE_SRC="${HIVE_SRC}" \
---hivevar:DATABASE_DEST="${HIVE_DEST}"
+--hivevar:DATABASE_DEST="${HIVE_DEST}" \
+--hiveusedb="${HIVE_DEST}"
 

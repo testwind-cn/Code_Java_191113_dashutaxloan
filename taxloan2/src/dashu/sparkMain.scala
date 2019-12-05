@@ -5,24 +5,19 @@ import util.sparkTool
 
 object sparkMain {
 
-  def runInit: Unit = {
-
+  def runInit(hc:HiveContext): Unit = {
+    hc.sql(sparkTool.printCmd(dashu.constant_common.Const_common.create_dim_db)).show()
+    hc.sql(sparkTool.printCmd(dashu.constant_common.Const_common.create_dim_date)).show()
+    hc.sql(sparkTool.printCmd(dashu.constant_common.Const_common.idno_area_mapping)).show()
+    hc.sql(sparkTool.printCmd(dashu.constant_common.Const_common.idno_province_mapping)).show()
   }
 
-  def runFullIncre(isFull:Boolean): Unit = {
+  def runFullIncre(hc:HiveContext,isFull:Boolean): Unit ={
 
     var cmd: String = null
 
-    val appName:String=if ( isFull ) "dashu_full" else "dashu_incre"
-
-    val hc:HiveContext = sparkTool.getHiveContext(appName)
-
-    sparkTool.runSettings(hc, dashu.constant_common.Const_common.global_set_01)
-
-    hc.sql(sparkTool.printCmd(dashu.constant_common.Const_common.create_dim_date)).show()
-
-    sparkTool.setLastTimeFromArgs()
-    // spark.setLastTimeFromHive(hc)
+    sparkTool.getLastTimeFromArgs()
+    // spark.getLastTimeFromHive(hc,"cjlog_last_"+this.getClass.getPackage.getName)
 
     cmd="set hivevar:LAST_TIME='" + sparkTool.get_sLastTime + "'"
     hc.sql(sparkTool.printCmd(cmd)).show()
@@ -42,15 +37,27 @@ object sparkMain {
 
     sparkTool.getArgs(args)
 
+    val appName:String=
+      if (sparkTool.get_isInit)
+        "dashu_init"
+      else if ( sparkTool.get_isFull )
+        "dashu_full"
+      else
+        "dashu_incre"
+
+    val hc:HiveContext = sparkTool.getHiveContext(appName)
+
+    sparkTool.runSettings(hc, dashu.constant_common.Const_common.global_set_01)
+
     if (sparkTool.get_isInit) {
-      println("========执行初始化=======")
-      runInit
-      return
+      println("========只执行初始化=======")
+      runInit(hc)
+    } else {
+      // println("========先执行初始化=======")
+      // runInit(hc)
+      println("========执行 全量或者 增量=======是否全量:"+sparkTool.get_isFull.toString)
+      runFullIncre(hc,sparkTool.get_isFull)
     }
-
-    println("========执行 全量或者 增量=======是否全量:"+sparkTool.get_isFull.toString)
-
-    runFullIncre(sparkTool.get_isFull)
   }
 
 

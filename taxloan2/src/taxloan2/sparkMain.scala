@@ -8,6 +8,7 @@ object sparkMain {
 
   def runInit(hc:HiveContext): Unit = {
 
+    hc.sql(sparkTool.printCmd(Const_DDL.create_dim_db)).show()
     hc.sql(sparkTool.printCmd(Const_DDL.create_db1)).show()
     hc.sql(sparkTool.printCmd(Const_DDL.create_db2)).show()
 
@@ -56,8 +57,8 @@ object sparkMain {
 
     var cmd : String=null
 
-    sparkTool.setLastTimeFromArgs()
-    // spark.setLastTimeFromHive(hc,"cjlog_last")
+    sparkTool.getLastTimeFromArgs()
+    // spark.getLastTimeFromHive(hc,"cjlog_last_"+this.getClass.getPackage.getName)
 
     cmd="set hivevar:LAST_TIME='" + sparkTool.get_sLastTime + "'"
     hc.sql(sparkTool.printCmd(cmd)).show()
@@ -285,8 +286,8 @@ object sparkMain {
       println("========只执行初始化=======")
       runInit(hc)
     } else {
-      println("========先执行初始化=======")
-      runInit(hc)
+      // println("========先执行初始化=======")
+      // runInit(hc)
       println("========执行 全量或者 增量=======是否全量:"+sparkTool.get_isFull.toString)
       runFullIncre(hc,sparkTool.get_isFull)
     }

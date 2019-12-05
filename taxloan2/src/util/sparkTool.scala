@@ -14,6 +14,7 @@ object sparkTool {
   private var isFull:Boolean=false
   private var isInit:Boolean=false
   private var hivevarArray:Array[String]=Array[String]()
+  private var hiveUseDB:String=""
 
   def get_theNewTime:String={
     theNewTime
@@ -69,7 +70,7 @@ object sparkTool {
   }
 
 
-  def setLastTimeFromHive(hc: HiveContext=null, table:String="cjlog_last"): Unit = {
+  def getLastTimeFromHive(hc: HiveContext=null, table:String="cjlog_last"): Unit = {
     // ***获取上次时间*****************************************************************
     // set hivevar:DATABASE_DEST=dm_taxloan
     // var sss="insert into ${hivevar:DATABASE_DEST}.control_table  select 'cjlog_new' as table_name, from_unixtime(unix_timestamp()) as export_date union all select 'cjlog_last' as table_name, from_unixtime(unix_timestamp()) as export_date"
@@ -95,7 +96,7 @@ group by table_name order by table_name
     // ***获取上次时间*****************************************************************
   }
 
-  def setLastTimeFromArgs(): Unit = {
+  def getLastTimeFromArgs(): Unit = {
     sLastTime=
       TimeTools.getDateTimeStr(TimeTools.getDateTime(theOldTime,0,"yyyy-MM-dd HH:mm:ss"),"yyyy-MM-dd HH:mm:ss")
     sLastTime_S=
@@ -119,6 +120,10 @@ group by table_name order by table_name
 
     the_opt = args.find(x => x.toLowerCase.trim.equals("--incre"))
     if (the_opt.isDefined) isFull = false
+
+    the_opt = args.find(x => x.startsWith("--hiveusedb=") )
+      .map(x => x.substring(12))
+    hiveUseDB = the_opt.getOrElse("")
 
     hivevarArray = args
       .filter(x => x.toLowerCase.startsWith("--hivevar:"))
@@ -152,10 +157,17 @@ group by table_name order by table_name
     )
     hivevarArray.foreach( x =>
       {
-        println("============ 4.设置命令行参数变量 ===========" + x)
+        println("============ 4.设置命令行参数变量 ===========\n\t" + x)
         hc.sql(x).show
       }
     )
+    if ( hiveUseDB.length > 0) {
+      println("============ 5.创建默认数据库 ===========\n\t" + "create database if not exists "+hiveUseDB)
+      hc.sql("create database if not exists "+hiveUseDB).show
+      println("============ 6.设置默认数据库变量 ===========\n\t" + "use "+hiveUseDB)
+      hc.sql("use "+hiveUseDB).show
+    }
+
   }
 
   def getAddTaxno(hc: HiveContext,obj: Object=null):Unit={

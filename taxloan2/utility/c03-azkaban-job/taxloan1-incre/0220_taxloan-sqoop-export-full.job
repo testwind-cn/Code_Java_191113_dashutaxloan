@@ -1,4 +1,4 @@
 type=command
 
-command=sh 0220_taxloan-sqoop-export-full.sh
+command=echo skip sh 0220_taxloan-sqoop-export-full.sh
 dependencies=0210_taxloan-spark-submit-full

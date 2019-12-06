@@ -23,6 +23,15 @@ then        # 10.91.1.100
     MYSQL1_USER="root"
     MYSQL1_PASS_F="/user/hive/warehouse/mysql_pwd_202"
     MYSQL1_PASS_S="9G3z8~a0JXa#8G9E"
+    
+    MYSQL2_IP="172.31.100.202"
+    MYSQL2_PORT="3306"
+    MYSQL2_DB="data_warehouse"
+    MYSQL2_URL="jdbc:mysql://${MYSQL2_IP}:${MYSQL2_PORT}/${MYSQL2_DB}"
+    MYSQL2_USER="datauser"
+    MYSQL2_PASS_F="/user/hive/warehouse/mysql_pwd_202"
+    MYSQL2_PASS_S="kpo9raFllycl@fc0"
+
     HIVE_SRC="dm_taxloan2"
     HIVE_DEST="dm_taxloan2"
     PROJ_PATH="/data/taxloan2/"
@@ -42,6 +51,15 @@ else        # 10.91.1.21
     MYSQL1_PASS_F="/user/hive/warehouse/mysql_pwd_202"
     MYSQL1_PASS_S="Redhat@2016"
     MYSQL1_PASS_S="9G3z8~a0JXa#8G9E"
+ 
+    MYSQL2_IP="10.91.1.19"
+    MYSQL2_PORT="3306"
+    MYSQL2_DB="data_warehouse2"
+    MYSQL2_URL="jdbc:mysql://${MYSQL2_IP}:${MYSQL2_PORT}/${MYSQL2_DB}"
+    MYSQL2_USER="root"
+    MYSQL2_PASS_F="/user/hive/warehouse/mysql_pwd_19.txt"
+    MYSQL2_PASS_S="Redhat@2016"
+
     HIVE_SRC="dm_taxloan2"
     HIVE_DEST="dm_taxloan2"
     PROJ_PATH="/data/taxloan2/"

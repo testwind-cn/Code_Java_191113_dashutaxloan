@@ -8,7 +8,7 @@ source /etc/profile
 source /var/lib/hadoop-hdfs/.bash_profile
 
 
-source ./0001_set_vars_output.sh
+source ./0000_set_vars_input.sh
 
 sed  's/${MYSQL_DB}'"/${MYSQL2_DB}/g" sql_before_incre.sql | cat
 echo -e "\n=========== MYSQL BEGIN ===========\n"

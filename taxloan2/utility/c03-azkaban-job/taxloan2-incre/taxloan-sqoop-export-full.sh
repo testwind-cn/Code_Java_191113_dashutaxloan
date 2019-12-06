@@ -9,7 +9,7 @@ source /var/lib/hadoop-hdfs/.bash_profile
 
 CURR_DATE=`date +%Y-%m-%d`
 
-source ./0001_set_vars_output.sh
+source ./0000_set_vars_input.sh
 
 sed  's/${MYSQL_DB}'"/${MYSQL2_DB}/g" sql_before_taxloan_full.sql | cat
 echo -e "\n=========== MYSQL BEGIN ===========\n"

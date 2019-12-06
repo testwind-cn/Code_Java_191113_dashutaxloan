@@ -8,7 +8,7 @@ source /etc/profile
 source /var/lib/hadoop-hdfs/.bash_profile
 
 
-source ./0001_set_vars_output.sh
+source ./0000_set_vars_input.sh
 
 PKG="dashu"
 OBJ="sparkMain"

@@ -1,4 +1,4 @@
 type=command
 
-command=sh dashu-sqoop-export-incre.sh
-dependencies=dashu-spark-submit-incre
+command=sh 0420_dashu-sqoop-export-incre.sh
+dependencies=0410_dashu-spark-submit-incre

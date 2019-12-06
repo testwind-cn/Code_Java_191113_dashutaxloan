@@ -1,4 +1,4 @@
 type=command
 
-command=sh dashu-spark-submit-incre.sh
-dependencies=taxloan-sqoop-export-incre
+command=sh 0410_dashu-spark-submit-incre.sh
+dependencies=0320_taxloan-sqoop-export-incre

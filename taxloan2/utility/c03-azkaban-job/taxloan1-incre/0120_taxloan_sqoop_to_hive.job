@@ -1,4 +1,4 @@
 type=command
 
-command=sh taxloan_sqoop_to_hive.sh
-dependencies=taxloan_init_database
+command=sh 0120_taxloan_sqoop_to_hive.sh
+dependencies=0110_taxloan_init_database

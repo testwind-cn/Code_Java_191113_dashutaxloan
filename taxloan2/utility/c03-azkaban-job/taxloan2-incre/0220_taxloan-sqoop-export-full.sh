@@ -11,9 +11,9 @@ CURR_DATE=`date +%Y-%m-%d`
 
 source ./0000_set_vars_input.sh
 
-sed  's/${MYSQL_DB}'"/${MYSQL2_DB}/g" sql_before_taxloan_full.sql | cat
+sed  's/${MYSQL_DB}'"/${MYSQL2_DB}/g" 0220_sql_before_taxloan_full.sql | cat
 echo -e "\n=========== MYSQL BEGIN ===========\n"
-sed  's/${MYSQL_DB}'"/${MYSQL2_DB}/g" sql_before_taxloan_full.sql | mysql -u"${MYSQL2_USER}" -p"${MYSQL2_PASS_S}" -h"${MYSQL2_IP}" -P"${MYSQL2_PORT}"
+sed  's/${MYSQL_DB}'"/${MYSQL2_DB}/g" 0220_sql_before_taxloan_full.sql | mysql -u"${MYSQL2_USER}" -p"${MYSQL2_PASS_S}" -h"${MYSQL2_IP}" -P"${MYSQL2_PORT}"
 echo "=========== MYSQL OK ==========="
 
 ### e0502 counterparty
@@ -123,9 +123,9 @@ sudo -E -u admin sqoop export \
 # --columns="cid,agentcode,authstate,authtime,authusername,batchid,billid,billno,buyeraddtel,buyerbankno,buyername,buyerno,buyertaxno,cancelflag,carriertaxno,cd,checkcode,checkresult,checkstate,checktime,ciphertext,cjhm,comments,confirmstate,createtime,detaillistflag,email,encryptionver,fdjhm,fhrsbh,forwordstate,forwordtime,gatheringperson,hgzh,imgstate,incomingstate,incomingtime,incomingusername,inputperson,invoicecode,invoicecontent,invoicedate,invoiceid,invoiceno,invoicetype,jztype,kpzdbs,logno,machineno,makeinvoicedeviceno,makeinvoiceperson,mobileno,pdfurl,printflag,pushstate,pushtime,qyd,recheckperson,repairflag,responecode,responeexplain,salebillno,selleraddtel,sellerbankno,sellername,sellertaxno,senterrtimes,sentoperator,senttime,senttobank,shrsbh,sktype,source,spsm,srctype,taxofficecode,taxrate,totalamount,totaltax,writebackstate,writebacktime,xcrs,xfdh,xfdz,yshwxx,yyzzh,zh,zyspmc"
 
 	
-sed  's/${MYSQL_DB}'"/${MYSQL2_DB}/g" sql_after_taxloan_full.sql | cat
+sed  's/${MYSQL_DB}'"/${MYSQL2_DB}/g" 0220_sql_after_taxloan_full.sql | cat
 echo -e "\n=========== MYSQL BEGIN ===========\n"
-sed  's/${MYSQL_DB}'"/${MYSQL2_DB}/g" sql_after_taxloan_full.sql | mysql -u"${MYSQL2_USER}" -p"${MYSQL2_PASS_S}" -h"${MYSQL2_IP}" -P"${MYSQL2_PORT}"
+sed  's/${MYSQL_DB}'"/${MYSQL2_DB}/g" 0220_sql_after_taxloan_full.sql | mysql -u"${MYSQL2_USER}" -p"${MYSQL2_PASS_S}" -h"${MYSQL2_IP}" -P"${MYSQL2_PORT}"
 echo "=========== MYSQL OK ==========="
 
 

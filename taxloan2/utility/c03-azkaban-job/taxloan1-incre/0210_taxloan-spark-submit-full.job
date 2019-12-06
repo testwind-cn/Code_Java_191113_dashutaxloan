@@ -1,4 +1,4 @@
 type=command
 
-command=sh taxloan-spark-submit-full.sh
-dependencies=taxloan_sqoop_to_hive
+command=sh 0210_taxloan-spark-submit-full.sh
+dependencies=0120_taxloan_sqoop_to_hive

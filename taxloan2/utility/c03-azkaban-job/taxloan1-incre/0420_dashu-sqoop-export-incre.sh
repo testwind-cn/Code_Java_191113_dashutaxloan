@@ -13,9 +13,9 @@ source ./0000_set_vars_input.sh
 PKG="dashu"
 OBJ="sparkMain"
 
-sed  's/${MYSQL_DB}'"/${MYSQL2_DB}/g" sql_before_dashu.sql | cat
+sed  's/${MYSQL_DB}'"/${MYSQL2_DB}/g" 0420_sql_before_dashu.sql | cat
 echo -e "\n=========== MYSQL BEGIN ===========\n"
-sed  's/${MYSQL_DB}'"/${MYSQL2_DB}/g" sql_before_dashu.sql | mysql -u"${MYSQL2_USER}" -p"${MYSQL2_PASS_S}" -h"${MYSQL2_IP}" -P"${MYSQL2_PORT}"
+sed  's/${MYSQL_DB}'"/${MYSQL2_DB}/g" 0420_sql_before_dashu.sql | mysql -u"${MYSQL2_USER}" -p"${MYSQL2_PASS_S}" -h"${MYSQL2_IP}" -P"${MYSQL2_PORT}"
 echo "=========== MYSQL OK ==========="
 
 ### e0502 deal_record
@@ -94,9 +94,9 @@ sudo -E -u admin sqoop export \
 
 
 
-sed  's/${MYSQL_DB}'"/${MYSQL2_DB}/g" sql_after_dashu.sql | cat
+sed  's/${MYSQL_DB}'"/${MYSQL2_DB}/g" 0420_sql_after_dashu.sql | cat
 echo -e "\n=========== MYSQL BEGIN ===========\n"
-sed  's/${MYSQL_DB}'"/${MYSQL2_DB}/g" sql_after_dashu.sql | mysql -u"${MYSQL2_USER}" -p"${MYSQL2_PASS_S}" -h"${MYSQL2_IP}" -P"${MYSQL2_PORT}"
+sed  's/${MYSQL_DB}'"/${MYSQL2_DB}/g" 0420_sql_after_dashu.sql | mysql -u"${MYSQL2_USER}" -p"${MYSQL2_PASS_S}" -h"${MYSQL2_IP}" -P"${MYSQL2_PORT}"
 echo "=========== MYSQL OK ==========="
 
 

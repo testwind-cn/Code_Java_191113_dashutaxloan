@@ -1,0 +1,65 @@
+
+nodes:
+  - name: 0420_dashu-sqoop-export-incre
+    type: command
+    config:
+      command: sh 0420_dashu-sqoop-export-incre.sh
+    dependsOn:
+      - 0410_dashu-spark-submit-incre
+
+
+  - name: 0410_dashu-spark-submit-incre
+    type: command
+    config:
+      command: sh 0410_dashu-spark-submit-incre.sh
+    dependsOn:
+      - 0320_taxloan-sqoop-export-incre
+
+
+  - name: 0320_taxloan-sqoop-export-incre
+    type: command
+    config:
+      command: sh 0320_taxloan-sqoop-export-incre.sh
+    dependsOn:
+      - 0310_taxloan-spark-submit-incre
+
+
+  
+  
+  - name: 0310_taxloan-spark-submit-incre
+    type: command
+    config:
+      command: sh 0310_taxloan-spark-submit-incre.sh
+    dependsOn:
+      - 0120_taxloan_sqoop_to_hive
+  
+  
+  
+  - name: 0220_taxloan-sqoop-export-full
+    type: command
+    config:
+      command: echo skip sh 0220_taxloan-sqoop-export-full.sh
+    dependsOn:
+      - 0210_taxloan-spark-submit-full
+
+  
+  
+  - name: 0210_taxloan-spark-submit-full
+    type: command
+    config:
+      command: echo skip sh 0210_taxloan-spark-submit-full.sh
+    dependsOn:
+      - 0120_taxloan_sqoop_to_hive
+  
+  - name: 0120_taxloan_sqoop_to_hive
+    type: command
+    config:
+      command: sh 0120_taxloan_sqoop_to_hive.sh
+    dependsOn:
+      - 0110_taxloan_init_database
+  
+  
+  - name: 0110_taxloan_init_database
+    type: command
+    config:
+      command: echo skip sh 0110_taxloan_init_database.sh

@@ -15,7 +15,7 @@
 *.war
 *.nar
 *.ear
-*.zip
+# *.zip
 *.tar.gz
 *.rar
 
@@ -25,8 +25,15 @@ hs_err_pid*
 
 
 out/
-.idea/workspace.xml
-/taxloan2/.idea/workspace.xml
 target/
 classes/
+
+
+*.iml
 .idea/
+.idea/*.xml
+.idea/workspace.xml
+
+dependency-reduced-pom.xml
+
+note_tmp/

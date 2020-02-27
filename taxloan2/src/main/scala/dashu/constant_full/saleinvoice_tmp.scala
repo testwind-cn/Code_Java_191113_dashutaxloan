@@ -1,5 +1,5 @@
 package dashu.constant_full
-import com.plj.scala.tools.loadString
+import com.plj.tools.scala.loadString
 
 object saleinvoice_tmp {
   val cjlog_tmp:String =loadString.getString("/sql/dashu/saleinvoice_tmp/cjlog_tmp.sql",this)

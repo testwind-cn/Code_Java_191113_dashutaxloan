@@ -2,7 +2,7 @@ package util
 
 import org.apache.spark.{SparkConf, SparkContext}
 import org.apache.spark.sql.hive.HiveContext
-import com.plj.scala.tools.{TimeTools, loadString}
+import com.plj.tools.scala.{TimeTools, loadString}
 
 
 object sparkTool {

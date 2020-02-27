@@ -1,5 +1,5 @@
 package dashu.constant_full
-import com.plj.scala.tools.loadString
+import com.plj.tools.scala.loadString
 
 
 object saleRegionList {

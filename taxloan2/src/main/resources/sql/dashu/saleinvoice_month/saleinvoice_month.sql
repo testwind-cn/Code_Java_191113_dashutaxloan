@@ -17,10 +17,10 @@ select
     dim.invalid_amount_ratio as invalid_amount_ratio, --废票金额占比
     dim.red_num_ratio as red_num_ratio, --红票数量占比
     dim.invalid_num_ratio as invalid_num_ratio, --废票数量占比
-    (case when abs(lag.taxsale_amount_1_year_ago) <=0.001 or lag.taxsale_amount_1_year_ago is null then -99999
+    (case when abs(lag.taxsale_amount_1_year_ago) <=0.5 or lag.taxsale_amount_1_year_ago is null then -99999
           else round((dim.taxsale_amount / lag.taxsale_amount_1_year_ago)-1,4)*100
         end) as taxsale_amount_yoy, --应税销售额同比
-    (case when abs(lag.taxsale_amount_1_month_ago) <=0.001 or lag.taxsale_amount_1_month_ago is null then -99999
+    (case when abs(lag.taxsale_amount_1_month_ago) <=0.5 or lag.taxsale_amount_1_month_ago is null then -99999
           else round((dim.taxsale_amount / lag.taxsale_amount_1_month_ago)-1,4)*100
         end) as taxsale_amount_mom, --应税销售额环比
     current_user() as create_user,

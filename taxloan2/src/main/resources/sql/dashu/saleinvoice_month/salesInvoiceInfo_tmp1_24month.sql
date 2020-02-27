@@ -5,10 +5,10 @@ select
           else concat(YEAR (t1.invoicedate),MONTH (t1.invoicedate)) end) AS data_month, --所属时期 月度数
     sum(CASE WHEN cancelflag='0' THEN totalamount+totaltax ELSE 0 END) AS taxsale_amount,  --应税销售额 --红冲不剔除
     sum(totalamount+totaltax) AS total_amount,  -- 全部_含税金额合计
-    sum(CASE WHEN invoicetype='s' AND cancelflag='0' THEN totalamount ELSE 0 END) AS taxsale_amount_zp,  --销项增值税专用发票金额 --红冲不剔除
-    sum(CASE WHEN invoicetype='c' AND cancelflag='0' THEN totalamount ELSE 0 END) AS taxsale_amount_pp,  --销项增值税普通发票金额 --红冲不剔除
+    sum(CASE WHEN invoicetype='s' AND cancelflag='0' THEN totalamount+totaltax ELSE 0 END) AS taxsale_amount_zp,  --销项增值税专用发票金额 --红冲不剔除
+    sum(CASE WHEN invoicetype='c' AND cancelflag='0' THEN totalamount+totaltax ELSE 0 END) AS taxsale_amount_pp,  --销项增值税普通发票金额 --红冲不剔除
     abs(sum(CASE WHEN cancelflag='0' and (totalamount<0 OR totaltax<0) THEN totalamount+totaltax ELSE 0 END)) AS red_amount,  --红票金额  --作废标志为否
-    sum(CASE WHEN cancelflag='1' THEN                                                                                               +totaltax ELSE 0 END) AS invalid_amount, --废票金额
+    sum(CASE WHEN cancelflag='1' THEN   totalamount+totaltax ELSE 0 END) AS invalid_amount, --废票金额
     COUNT(*) AS valid_num,  --开票数量
     sum(CASE WHEN invoicetype='s' THEN 1 ELSE 0	END) AS valid_num_zp, --销项增值税专用发票数量
     sum(CASE WHEN invoicetype='c' THEN 1 ELSE 0	END) AS valid_num_pp,  --销项增值税普通发票数量

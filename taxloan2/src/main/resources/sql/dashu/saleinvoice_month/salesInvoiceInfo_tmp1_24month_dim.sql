@@ -14,17 +14,17 @@ select
     nvl(tmp1.valid_num_pp,0) as valid_num_pp,  --销项增值税普通发票数量
     nvl(tmp1.red_num,0) as red_num,  --红票数量
     nvl(tmp1.invalid_num,0) as invalid_num,  --废票数量
-    (case when abs(nvl(tmp1.taxsale_amount,0)+ nvl(tmp1.red_amount,0)) <=0.001 then -99999
+    (case when abs(nvl(tmp1.taxsale_amount,0)+ nvl(tmp1.red_amount,0)) <=0.5 then -99999
           else round(nvl(tmp1.red_amount,0) / (nvl(tmp1.taxsale_amount,0)+ nvl(tmp1.red_amount,0)),4)*100
         end) as red_amount_ratio, --红票金额占比
-    (case when nvl(tmp1.total_amount,0) <=0.001 then -99999
+    (case when nvl(tmp1.total_amount,0) <=0.5 then -99999
           else round(nvl(tmp1.invalid_amount,0) / nvl(tmp1.total_amount,0),4)*100
         end) as invalid_amount_ratio, --废票金额占比
-    (case when abs(nvl(tmp1.valid_num,0)-nvl(tmp1.invalid_num,0)) <=0.001 then -99999
+    (case when abs(nvl(tmp1.valid_num,0)-nvl(tmp1.invalid_num,0)) <=0.02 then -99999
           else round(nvl(tmp1.red_num,0) / (nvl(tmp1.valid_num,0)-nvl(tmp1.invalid_num,0)),4)*100
         end) as red_num_ratio, --红票数量占比
-    (case when abs(nvl(tmp1.valid_num,0)) <=0.001 then -99999
-          else round(nvl(tmp1.invalid_amount,0) / nvl(tmp1.valid_num,0),4)*100
+    (case when abs(nvl(tmp1.valid_num,0)) <=0.02 then -99999
+          else round(nvl(tmp1.invalid_num,0) / nvl(tmp1.valid_num,0),4)*100
         end) as invalid_num_ratio --废票数量占比
 from ${hivevar:DATABASE_DEST}.dim_sellertaxno_24month dim
          left join ${hivevar:DATABASE_DEST}.salesInvoiceInfo_tmp1_24month tmp1

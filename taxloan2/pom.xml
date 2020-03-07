@@ -214,7 +214,7 @@
           -->
           <archive>
             <manifest>
-              <mainClass>taxloam2.sparkMain</mainClass>
+              <mainClass>taxloan1.sparkMain</mainClass>
             </manifest>
           </archive>
 <!--          <archive>-->

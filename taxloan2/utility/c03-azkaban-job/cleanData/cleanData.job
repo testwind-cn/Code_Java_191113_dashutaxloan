@@ -1,0 +1,3 @@
+type=command
+
+command=sh /data/taxloan2/cleanData/cleanData.sh

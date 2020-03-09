@@ -46,7 +46,7 @@
     <dependencySet>
       <useProjectArtifact>false</useProjectArtifact>
       <includes>
-        <include>com.plj.tools:plj-tools-scala</include>
+        <include>com.plj.tools:plj-tools-java</include>
       </includes>
 
       <outputDirectory>/</outputDirectory>

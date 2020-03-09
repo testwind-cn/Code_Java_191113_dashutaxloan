@@ -43,8 +43,8 @@
 
     <dependency>
       <groupId>com.plj.tools</groupId>
-      <artifactId>plj-tools-scala</artifactId>
-      <version>1.0</version>
+      <artifactId>plj-tools-java</artifactId>
+      <version>1.0-SNAPSHOT</version>
       <scope>compile</scope>
     </dependency>
 

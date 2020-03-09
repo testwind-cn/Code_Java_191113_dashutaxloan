@@ -1,6 +1,8 @@
 package test
 
-import com.plj.tools.scala.{TimeTools, loadString}
+import java.time.LocalDateTime
+
+import com.plj.tools.{LoadString, TimeTools}
 import org.apache.spark.{SparkConf, SparkContext}
 import org.apache.spark.sql.hive.HiveContext
 import taxloan2.Const.{Const_Common, Const_counterparty, Const_counterparty_classify, Const_mcht_full_incre, Const_statistics_crossmonth, Const_statistics_month, Const_table_export}
@@ -13,8 +15,8 @@ object test {
 
     println(this.getClass.getProtectionDomain.getCodeSource.getLocation.getPath)
 
-
-    var add_taxno=loadString.getStringList("add_taxno.txt",this)
+    var loadString = new LoadString(this)
+    var add_taxno=loadString.getStringList("add_taxno.txt")
     add_taxno.foreach(println)
     println("==========================")
     if ( add_taxno.size > 0 ) {
@@ -29,17 +31,17 @@ object test {
     // ${hivevar:ADD_TAXNO}
 
 
-    loadString.getInputSteamByFile("test.txt")
+    // loadString.getInputSteamByFile("test.txt")
 
 
 
-    println(TimeTools.getDate("2019-01-12 12:33:44"))
-    println(TimeTools.getDateTime("2019-01-12 12:33:44"))
+    println(TimeTools.GetCalendar("2019-01-12 12:33:44"))
+    println(TimeTools.GetLocalDateTime("2019-01-12 12:33:44"))
 
-    println(TimeTools.getDateTimeStr())
-    println(TimeTools.getDateTimeStr(null,"yyyy-MM-dd_HH:mm:ss"))
-    println(TimeTools.getDateStr(null,"yyyyMMdd_HH:mm:ss"))
-    println(TimeTools.getDateStr())
+    println(TimeTools.GetDateTimeStr())
+    println(TimeTools.GetDateTimeStr(null:LocalDateTime,0,"yyyy-MM-dd_HH:mm:ss"))
+    println(TimeTools.GetDateStr(null:LocalDateTime,0,"yyyyMMdd_HH:mm:ss"))
+    println(TimeTools.GetDateStr())
 
     // runFullIncre(false)
 

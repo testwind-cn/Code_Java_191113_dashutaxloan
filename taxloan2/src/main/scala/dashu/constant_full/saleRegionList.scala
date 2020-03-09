@@ -1,16 +1,16 @@
 package dashu.constant_full
-import com.plj.tools.scala.loadString
+import util.sparkTool
 
 
 object saleRegionList {
-  val sale_region_list_tmp1:String =loadString.getString("/sql/dashu/saleRegionList/sale_region_list_tmp1.sql",this)
+  val sale_region_list_tmp1:String =sparkTool.loader.getString("/sql/dashu/saleRegionList/sale_region_list_tmp1.sql")
 
-  val dim_sellertaxno_latest_2_years:String =loadString.getString("/sql/dashu/saleRegionList/dim_sellertaxno_latest_2_years.sql",this)
+  val dim_sellertaxno_latest_2_years:String =sparkTool.loader.getString("/sql/dashu/saleRegionList/dim_sellertaxno_latest_2_years.sql")
 
-  val sale_region_list_tmp2:String =loadString.getString("/sql/dashu/saleRegionList/sale_region_list_tmp2.sql",this)
+  val sale_region_list_tmp2:String =sparkTool.loader.getString("/sql/dashu/saleRegionList/sale_region_list_tmp2.sql")
 
-  val sale_region_list:String =loadString.getString("/sql/dashu/saleRegionList/sale_region_list.sql",this)
+  val sale_region_list:String =sparkTool.loader.getString("/sql/dashu/saleRegionList/sale_region_list.sql")
 
-  val insertSql:String =loadString.getString("/sql/dashu/saleRegionList/insertSql.sql",this)
+  val insertSql:String =sparkTool.loader.getString("/sql/dashu/saleRegionList/insertSql.sql")
 
 }

@@ -1,22 +1,21 @@
 package dashu.constant_full
-import com.plj.tools.scala.loadString
+import util.sparkTool
 
 object dealRecordInfo {
-
   //近6个月最大连续未开票间隔天数（销项）
-  val nonDealDaysL6:String =loadString.getString("/sql/dashu/dealRecordInfo/nonDealDaysL6.sql",this)
+  val nonDealDaysL6:String =sparkTool.loader.getString("/sql/dashu/dealRecordInfo/nonDealDaysL6.sql")
 
   //近12个月最大连续未开票间隔天数（销项）
-  val nonDealDaysL12:String =loadString.getString("/sql/dashu/dealRecordInfo/nonDealDaysL12.sql",this)
+  val nonDealDaysL12:String =sparkTool.loader.getString("/sql/dashu/dealRecordInfo/nonDealDaysL12.sql")
 
   //近24个月最大连续未开票间隔天数（销项）
-  val nonDealDaysL24:String =loadString.getString("/sql/dashu/dealRecordInfo/nonDealDaysL24.sql",this)
+  val nonDealDaysL24:String =sparkTool.loader.getString("/sql/dashu/dealRecordInfo/nonDealDaysL24.sql")
 
   //易记录信息目标表前半部分
-  val dealRecordInfoPrehalf:String =loadString.getString("/sql/dashu/dealRecordInfo/dealRecordInfoPrehalf.sql",this)
+  val dealRecordInfoPrehalf:String =sparkTool.loader.getString("/sql/dashu/dealRecordInfo/dealRecordInfoPrehalf.sql")
 
-  val dealRecordInfoGenerate:String =loadString.getString("/sql/dashu/dealRecordInfo/dealRecordInfoGenerate.sql",this)
+  val dealRecordInfoGenerate:String =sparkTool.loader.getString("/sql/dashu/dealRecordInfo/dealRecordInfoGenerate.sql")
 
-  val insertSql:String =loadString.getString("/sql/dashu/dealRecordInfo/insertSql.sql",this)
+  val insertSql:String =sparkTool.loader.getString("/sql/dashu/dealRecordInfo/insertSql.sql")
 
 }

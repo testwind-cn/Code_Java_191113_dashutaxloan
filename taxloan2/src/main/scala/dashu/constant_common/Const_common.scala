@@ -1,11 +1,11 @@
 package dashu.constant_common
 
-import com.plj.tools.scala.loadString
+import util.sparkTool
 
 object Const_common {
-  val global_set_01: Array[String] =loadString.getHiveStringList("/sql/dashu/Const_Common/global_set_01.sql",this)
-  val create_dim_db: String =loadString.getString("/sql/dashu/Const_DDL_Hive/create_dim_db.sql",this)
-  val create_dim_date: String =loadString.getString("/sql/dashu/Const_DDL_Hive/create_dim_date.sql",this)
-  val idno_area_mapping: String =loadString.getString("/sql/dashu/Const_DDL_Hive/idno_area_mapping.sql",this)
-  val idno_province_mapping: String =loadString.getString("/sql/dashu/Const_DDL_Hive/idno_province_mapping.sql",this)
+  val global_set_01: Array[String] =sparkTool.loader.getSqlCmdStringList("/sql/dashu/Const_Common/global_set_01.sql")
+  val create_dim_db: String =sparkTool.loader.getString("/sql/dashu/Const_DDL_Hive/create_dim_db.sql")
+  val create_dim_date: String =sparkTool.loader.getString("/sql/dashu/Const_DDL_Hive/create_dim_date.sql")
+  val idno_area_mapping: String =sparkTool.loader.getString("/sql/dashu/Const_DDL_Hive/idno_area_mapping.sql")
+  val idno_province_mapping: String =sparkTool.loader.getString("/sql/dashu/Const_DDL_Hive/idno_province_mapping.sql")
 }

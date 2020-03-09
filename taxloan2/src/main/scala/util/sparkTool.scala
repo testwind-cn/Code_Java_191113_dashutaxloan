@@ -1,11 +1,15 @@
 package util
 
+import java.time.LocalDateTime
+
 import org.apache.spark.{SparkConf, SparkContext}
 import org.apache.spark.sql.hive.HiveContext
-import com.plj.tools.scala.{TimeTools, loadString}
+import com.plj.tools.{TimeTools, LoadString}
 
 
 object sparkTool {
+
+  val loader: LoadString = new LoadString(this)
 
   private var theNewTime:String=""
   private var theOldTime:String=""
@@ -65,7 +69,7 @@ object sparkTool {
     if (the_opt.isDefined)    {
       the_opt.get.substring(argPos)
     } else {
-      TimeTools.getDateTimeStr(TimeTools.getDateTime(null,addDate))
+      TimeTools.GetDateTimeStr(null:LocalDateTime, addDate)
     }
   }
 
@@ -98,9 +102,9 @@ group by table_name order by table_name
 
   def getLastTimeFromArgs(): Unit = {
     sLastTime=
-      TimeTools.getDateTimeStr(TimeTools.getDateTime(theOldTime,0,"yyyy-MM-dd HH:mm:ss"),"yyyy-MM-dd HH:mm:ss")
+      TimeTools.GetDateTimeStr( TimeTools.GetLocalDateTime(theOldTime,0,"yyyy-MM-dd HH:mm:ss"), 0,"yyyy-MM-dd HH:mm:ss")
     sLastTime_S=
-      TimeTools.getDateTimeStr(TimeTools.getDateTime(theOldTime,0,"yyyy-MM-dd HH:mm:ss"),"yyyy-MM-dd_HHmmss")
+      TimeTools.GetDateTimeStr(TimeTools.GetLocalDateTime(theOldTime,0,"yyyy-MM-dd HH:mm:ss"),0,"yyyy-MM-dd_HHmmss")
   }
 
 
@@ -172,7 +176,7 @@ group by table_name order by table_name
 
   def getAddTaxno(hc: HiveContext,obj: Object=null):Unit={
     var cmd:String=""
-    val add_taxno=loadString.getStringList("add_taxno.txt",obj)
+    val add_taxno=loader.getStringList("add_taxno.txt")
     if ( add_taxno.size > 0 ) {
       println("========= 查询到手动添加商户 =============")
       add_taxno.foreach(println)
@@ -183,7 +187,7 @@ group by table_name order by table_name
       cmd = "set hivevar:ADD_TAXNO="
       hc.sql(printCmd(cmd)).show()
     }
-    loadString.clearFile("add_taxno.txt",obj)
+    loader.clearFile("add_taxno.txt")
 
   }
 

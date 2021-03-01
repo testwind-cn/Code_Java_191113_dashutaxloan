@@ -176,7 +176,7 @@ group by table_name order by table_name
 
   def getAddTaxno(hc: HiveContext,obj: Object=null):Unit={
     var cmd:String=""
-    val add_taxno=loader.getStringList("add_taxno.txt")
+    val add_taxno=loader.getListFromFile("add_taxno.txt")
     if ( add_taxno.size > 0 ) {
       println("========= 查询到手动添加商户 =============")
       add_taxno.foreach(println)

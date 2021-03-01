@@ -16,7 +16,7 @@ object test {
     println(this.getClass.getProtectionDomain.getCodeSource.getLocation.getPath)
 
     var loadString = new LoadString(this)
-    var add_taxno=loadString.getStringList("add_taxno.txt")
+    var add_taxno=loadString.getListFromFile("add_taxno.txt")
     add_taxno.foreach(println)
     println("==========================")
     if ( add_taxno.size > 0 ) {
@@ -53,7 +53,7 @@ object test {
     the_opt=args.find( x => x.toLowerCase.trim.equals("--fulls"))
 
     var aaa = loadString
-    var sss: String = aaa.getString("/sql_backup/constant_full_and_incre/Const_mcht_incre/cjlog_tmp.sql")
+    var sss: String = aaa.loadFileString("/sql_backup/constant_full_and_incre/Const_mcht_incre/cjlog_tmp.sql")
     println(sss)
 
 //    var bbb=new LoadString()
